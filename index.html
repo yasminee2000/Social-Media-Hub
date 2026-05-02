@@ -1,0 +1,2487 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+<meta name="apple-mobile-web-app-capable" content="yes" />
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+<meta name="apple-mobile-web-app-title" content="The Hub" />
+<meta name="theme-color" content="#1a1a2e" />
+<title>The Hub ✨</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#fdf6f0;--bg2:#f9f0ff;--bg3:#f0f8ff;
+    --ink:#1a1a2e;--ink2:#0f3460;--muted:#777;
+    --life:#F4A261;--life-l:#FFF4EC;
+    --hustle:#2EC4B6;--hustle-l:#EDFAFA;
+    --soul:#E07BAF;--soul-l:#FDF0F7;
+    --beauty:#F472B6;--beauty-l:#FDF2F8;
+    --creative:#FBBF24;--creative-l:#FFFBEB;
+    color-scheme:light;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+  html,body{height:100%}
+  body{font-family:'DM Sans',system-ui,sans-serif;background:linear-gradient(135deg,var(--bg) 0%,var(--bg2) 50%,var(--bg3) 100%);color:var(--ink);min-height:100vh;padding-bottom:120px;-webkit-font-smoothing:antialiased}
+  .serif{font-family:'Playfair Display',Georgia,serif}
+  button{font-family:inherit;border:none;cursor:pointer;background:none}
+  input,textarea,select{font-family:inherit;font-size:15px;outline:none;border:1px solid #e7e1d9;border-radius:12px;padding:12px 14px;background:#fff;width:100%}
+  input:focus,textarea:focus,select:focus{border-color:var(--ink);box-shadow:0 0 0 3px rgba(26,26,46,.08)}
+
+  header{background:linear-gradient(135deg,#1a1a2e 0%,#16213e 60%,#0f3460 100%);color:#fff;padding:46px 20px 26px;text-align:center;position:relative;overflow:hidden}
+  header::before{content:"";position:absolute;inset:0;background:radial-gradient(ellipse at 30% 50%,rgba(167,139,250,.18) 0%,transparent 60%),radial-gradient(ellipse at 70% 30%,rgba(244,162,97,.12) 0%,transparent 50%)}
+  header .kicker{position:relative;font-size:11px;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,.55);margin-bottom:8px}
+  header h1{position:relative;font-family:'Playfair Display',serif;font-size:clamp(30px,7vw,48px);font-weight:900;line-height:1.05;margin-bottom:10px}
+  header p.tag{position:relative;color:rgba(255,255,255,.7);font-style:italic;font-size:15px}
+  .streak{position:relative;display:inline-flex;align-items:center;gap:8px;margin-top:16px;padding:8px 16px;border-radius:100px;background:rgba(255,255,255,.12);backdrop-filter:blur(8px);font-size:13px;font-weight:600;color:#fff}
+
+  nav.tabs{position:sticky;top:0;z-index:10;display:flex;gap:6px;padding:10px 12px;background:rgba(253,246,240,.9);backdrop-filter:blur(12px);border-bottom:1px solid rgba(0,0,0,.04);overflow-x:auto;scrollbar-width:none}
+  nav.tabs::-webkit-scrollbar{display:none}
+  .tab{padding:8px 14px;border-radius:100px;white-space:nowrap;font-weight:600;font-size:12px;color:#666;background:#fff;box-shadow:0 2px 6px rgba(0,0,0,.05);transition:all .2s}
+  .tab.active{background:var(--ink);color:#fff;box-shadow:0 4px 14px rgba(26,26,46,.25)}
+  .tab:active{transform:scale(.96)}
+
+  main{max-width:760px;margin:0 auto;padding:20px 16px}
+  .panel{display:none}
+  .panel.active{display:block;animation:fade .25s ease}
+  @keyframes fade{from{opacity:0;transform:translateY(4px)}to{opacity:1;transform:none}}
+  .card{background:#fff;border-radius:20px;padding:20px;margin-bottom:14px;box-shadow:0 2px 14px rgba(0,0,0,.05)}
+  h2.section{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:10px}
+  h2.section+p.lead{color:var(--muted);font-size:13px;margin-bottom:14px}
+  .darkcard{background:linear-gradient(135deg,#1a1a2e,#0f3460);border-radius:20px;padding:22px;color:#fff}
+  .stat{display:flex;gap:12px;margin-bottom:10px;align-items:flex-start}
+  .stat b{font-size:12px;color:rgba(255,255,255,.5);font-weight:700;min-width:108px}
+  .stat span{font-size:13px;color:#fff;line-height:1.5}
+
+  /* PILLARS */
+  .pillar-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .pillar{border-radius:14px;padding:14px;border-left:4px solid}
+  .pillar b{font-size:13px;display:block;margin-bottom:3px}
+  .pillar span{font-size:12px;color:#555;line-height:1.5}
+  .rule{display:flex;gap:14px;margin-bottom:14px;align-items:flex-start}
+  .rule .num{flex-shrink:0;width:28px;height:28px;border-radius:50%;background:var(--ink);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:13px}
+  .rule b{font-size:14px}
+  .rule p{font-size:13px;color:#777;margin-top:2px;line-height:1.5}
+
+  /* PILLS */
+  .filter-pills{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+  .filter-pills.status-row{margin-bottom:14px}
+  .pill{padding:6px 13px;border-radius:100px;font-weight:600;font-size:12px;background:#fff;color:#555;box-shadow:0 2px 6px rgba(0,0,0,.05);transition:all .15s;cursor:pointer}
+  .pill.active{background:var(--ink);color:#fff}
+  .pill:active{transform:scale(.96)}
+  .pill-archive.active{background:#888;color:#fff}
+
+  /* IDEA CARDS */
+  .idea{background:#fff;border-radius:16px;padding:16px;margin-bottom:10px;box-shadow:0 2px 10px rgba(0,0,0,.05);border-left:4px solid #ccc;transition:all .2s}
+  .idea .top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+  .idea .tags{display:flex;gap:5px;margin-bottom:6px;flex-wrap:wrap}
+  .idea .tag{padding:3px 9px;border-radius:100px;font-size:11px;font-weight:700}
+  .idea .tag.plat{background:#f3f3f3;color:#888}
+  .idea .tag.day{background:#fff7e6;color:#c47f00}
+  .idea .tag.fmt{background:#e8f0fe;color:#3b5bdb}
+  .idea .tag.goal{background:#fef9ec;color:#b45309}
+  .idea .tag.ser{background:#fff0fa;color:#9333ea}
+  .idea .title{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;margin-bottom:4px;line-height:1.3;cursor:pointer}
+  .idea .title:hover{color:var(--ink2)}
+  .idea .hook{font-size:13px;color:#888;font-style:italic;margin-bottom:3px}
+  .idea .script-preview{font-size:12px;color:#aaa;margin-top:4px;line-height:1.4;border-left:2px solid #e7e1d9;padding-left:8px}
+  .idea .card-actions{display:flex;gap:2px;align-items:center;flex-shrink:0}
+  .idea .edit-btn{color:#ccc;font-size:15px;padding:4px 7px;line-height:1}
+  .idea .edit-btn:hover{color:var(--ink)}
+  .idea .del{color:#d9d4cc;font-size:20px;padding:4px 8px;line-height:1}
+  .idea .del:hover{color:#c44}
+  .idea .actions{margin-top:10px;display:flex;gap:5px;flex-wrap:wrap}
+  .idea .actions button{padding:5px 10px;border-radius:100px;font-size:11px;font-weight:600;background:#f5f2ed;color:#888;transition:all .15s}
+  .idea .actions button.active{background:var(--ink);color:#fff}
+  .idea .assign-btn{padding:5px 10px;border-radius:100px;font-size:11px;font-weight:600;background:#fef0e6;color:#c47f00}
+
+  .stag-idea{background:#f0f0f0;color:#888}
+  .stag-scripted{background:#e8f4fd;color:#3b82f6}
+  .stag-filmed{background:#fef3c7;color:#d97706}
+  .stag-edited{background:#f3e8ff;color:#9333ea}
+  .stag-posted{background:#dcfce7;color:#16a34a}
+
+  /* CAT COLORS */
+  .cat-life{border-color:var(--life);background:var(--life-l);color:var(--life)}
+  .cat-hustle{border-color:var(--hustle);background:var(--hustle-l);color:var(--hustle)}
+  .cat-soul{border-color:var(--soul);background:var(--soul-l);color:var(--soul)}
+  .cat-beauty{border-color:var(--beauty);background:var(--beauty-l);color:var(--beauty)}
+  .cat-creative{border-color:var(--creative);background:var(--creative-l);color:var(--creative)}
+  .border-life{border-left-color:var(--life)!important}
+  .border-hustle{border-left-color:var(--hustle)!important}
+  .border-soul{border-left-color:var(--soul)!important}
+  .border-beauty{border-left-color:var(--beauty)!important}
+  .border-creative{border-left-color:var(--creative)!important}
+
+  /* SERIES */
+  .series-card{background:#fff;border-radius:18px;padding:18px 20px;box-shadow:0 2px 12px rgba(0,0,0,.06);cursor:pointer;transition:all .2s;border-left:4px solid #ccc;margin-bottom:12px}
+  .series-card:active{transform:scale(.99)}
+  .series-card .s-top{display:flex;justify-content:space-between;align-items:flex-start}
+  .series-card h3{font-family:'Playfair Display',serif;font-size:17px;font-weight:700;line-height:1.3;margin-bottom:6px}
+  .series-card .s-del{color:#d9d4cc;font-size:18px;padding:2px 6px;flex-shrink:0}
+  .series-card .s-del:hover{color:#c44}
+  .series-card .ep-count{font-size:12px;color:#888;margin-top:6px}
+  .series-detail-header{display:flex;align-items:center;gap:12px;margin-bottom:16px}
+  .back-btn{padding:8px 14px;border-radius:100px;background:#fff;box-shadow:0 2px 8px rgba(0,0,0,.08);font-weight:700;font-size:13px;color:var(--ink)}
+
+  /* HOOKS PAGE */
+  .hook-card{background:#fff;border-radius:16px;padding:16px 18px;margin-bottom:10px;box-shadow:0 2px 10px rgba(0,0,0,.05);border-left:4px solid var(--ink);cursor:pointer;transition:all .15s;position:relative}
+  .hook-card:active{transform:scale(.99)}
+  .hook-card .hook-type{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#aaa;margin-bottom:6px}
+  .hook-card .hook-text{font-family:'Playfair Display',serif;font-size:15px;font-weight:700;line-height:1.4;color:var(--ink)}
+  .hook-card .hook-cat{font-size:11px;color:#aaa;margin-top:6px}
+  .hook-card .copied-badge{font-size:11px;color:#16a34a;font-weight:700;margin-top:4px;display:none}
+  .hook-section-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#aaa;margin:18px 0 8px 4px}
+
+  /* WEEK */
+  .day-col{background:#fff;border-radius:16px;padding:14px;margin-bottom:10px;box-shadow:0 2px 10px rgba(0,0,0,.05)}
+  .day-col .day-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;padding-bottom:8px;border-bottom:1px solid #f3efe9}
+  .day-col .day-name{display:flex;align-items:center;gap:10px}
+  .day-col .day-chip{padding:5px 11px;border-radius:100px;color:#fff;font-weight:700;font-size:12px;min-width:80px;text-align:center}
+  .day-col .role{font-size:12px;color:#888;font-weight:600}
+  .day-col .count{font-size:11px;color:#aaa;background:#f5f2ed;padding:3px 10px;border-radius:100px;font-weight:700}
+  .day-col .mini-idea{background:#fafaf7;border-radius:10px;padding:10px 12px;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:8px;border-left:3px solid #ccc;cursor:pointer;transition:background .15s}
+  .day-col .mini-idea:hover{background:#f0ede8}
+  .day-col .mini-idea .t{font-size:13px;font-weight:600;flex:1;line-height:1.3}
+  .day-col .mini-idea .tiny-tag{font-size:10px;padding:2px 8px;border-radius:100px;font-weight:700}
+  .day-col .mini-idea .remove{font-size:16px;color:#ccc;padding:0 4px;line-height:1}
+  .day-col .mini-idea .remove:hover{color:#c44}
+  .day-col .empty{color:#ccc;font-size:12px;padding:8px 4px;font-style:italic}
+
+  /* INSPO grid (phone-format cards) */
+  .inspo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(145px,1fr));gap:12px}
+  .inspo-card{background:#fff;border-radius:16px;overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.06);cursor:pointer;position:relative;transition:transform .15s}
+  .inspo-card:active{transform:scale(.97)}
+  .inspo-thumb{width:100%;aspect-ratio:9/16;background:linear-gradient(135deg,#1a1a2e,#0f3460);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;overflow:hidden;position:relative}
+  .inspo-thumb img{width:100%;height:100%;object-fit:cover;position:absolute;inset:0}
+  .inspo-thumb .plat-icon{font-size:28px;position:relative}
+  .inspo-thumb .plat-lbl{font-size:10px;color:rgba(255,255,255,.5);font-weight:700;letter-spacing:1px;text-transform:uppercase;position:relative}
+  .inspo-thumb .hook-badge{position:absolute;top:7px;left:7px;background:rgba(224,123,175,.9);color:#fff;font-size:9px;font-weight:700;padding:2px 6px;border-radius:100px}
+  .inspo-del-btn{position:absolute;top:6px;right:6px;background:rgba(0,0,0,.55);color:#fff;width:22px;height:22px;border-radius:50%;font-size:15px;display:flex;align-items:center;justify-content:center;z-index:3;line-height:1;border:none}
+  .inspo-card-body{padding:9px 11px 11px}
+  .inspo-card-title{font-size:12px;font-weight:700;line-height:1.3;margin-bottom:4px;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+  /* INSPO detail modal */
+  .idmodal-bg{position:fixed;inset:0;background:rgba(10,8,20,.7);backdrop-filter:blur(6px);z-index:250;display:none;align-items:flex-end;justify-content:center}
+  .idmodal-bg.open{display:flex}
+  .idmodal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:580px;max-height:96vh;overflow-y:auto;animation:slideUp .28s ease}
+  .idmodal-embed{width:100%;background:#1a1a2e;position:relative}
+  .idmodal-embed.portrait{aspect-ratio:9/16;max-height:55vh;overflow:hidden}
+  .idmodal-embed.landscape{aspect-ratio:16/9;max-height:38vh;overflow:hidden}
+  .idmodal-embed iframe{width:100%;height:100%;border:none;display:block}
+  .idmodal-embed .ig-embed-wrap{padding:0}
+  .idplaceholder{width:100%;aspect-ratio:16/9;max-height:200px;background:linear-gradient(135deg,#1a1a2e,#16213e);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:rgba(255,255,255,.7);cursor:pointer}
+  .idplaceholder .picon{font-size:32px}
+  .idplaceholder .pname{font-size:12px;font-weight:600;color:rgba(255,255,255,.45)}
+  .id-open-btn{background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.22);color:#fff;padding:8px 18px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;margin-top:4px}
+  .idmodal-body{padding:16px 18px 32px}
+  .idmodal-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:700;margin-bottom:8px;line-height:1.3}
+  .idmodal-tags{display:flex;gap:5px;flex-wrap:wrap;margin-bottom:14px}
+  .ifield{margin-bottom:12px}
+  .ifield-lbl{font-size:11px;font-weight:700;color:#999;text-transform:uppercase;letter-spacing:1px;margin-bottom:5px;display:flex;justify-content:space-between;align-items:center}
+  .ifield-lbl .ilbl-act{font-size:11px;font-weight:700;color:#E07BAF;cursor:pointer;text-transform:none;letter-spacing:0;padding:2px 9px;background:#fff0fa;border-radius:100px;border:none}
+  .ifield textarea{font-size:13px;padding:10px 12px;border-radius:10px;background:#faf8f4;border:1px solid #eee;width:100%;resize:vertical;font-family:inherit;line-height:1.6;min-height:42px}
+  .ifield textarea:focus{background:#fff;border-color:var(--ink);outline:none;box-shadow:0 0 0 3px rgba(26,26,46,.06)}
+  .ifield textarea::placeholder{color:#bbb}
+  .inspo-ai-block{background:linear-gradient(135deg,rgba(224,123,175,.06),rgba(167,139,250,.06));border-radius:12px;padding:12px;margin-bottom:14px;border:1px dashed #ddc6e8}
+  .inspo-ai-block .ai-label{font-size:12px;color:#888;margin-bottom:8px;line-height:1.5;font-weight:600}
+  .inspo-ai-block textarea{font-size:13px;min-height:70px;border-radius:10px;padding:10px 12px;border:1px solid #e7e1d9;background:#fff;width:100%;resize:vertical;font-family:inherit}
+  .inspo-ai-block .ai-btn-sm{width:100%;padding:10px;border-radius:10px;background:linear-gradient(135deg,#E07BAF,#A78BFA);color:#fff;font-weight:700;font-size:13px;margin-top:8px;cursor:pointer}
+  .idmodal-actions{display:flex;gap:6px;flex-wrap:wrap;padding-top:12px;border-top:1px solid #f0ede8}
+  .idmodal-actions button{padding:8px 14px;border-radius:100px;font-size:12px;font-weight:600;background:#f5f2ed;color:#555;cursor:pointer}
+  .idmodal-actions .btn-open{background:#1a1a2e;color:#fff}
+  .idmodal-actions .btn-del{color:#c44;background:#fff5f5}
+  /* Instagram embed override */
+  .instagram-media{min-width:unset!important;width:100%!important;max-width:100%!important;border-radius:0!important;margin:0!important}
+
+  .help-item{display:flex;gap:14px;margin-bottom:18px;align-items:flex-start}
+  .help-item .emoji{font-size:22px;flex-shrink:0;width:36px}
+  .help-item b{font-size:15px;display:block;margin-bottom:3px}
+  .help-item p{font-size:13px;color:#777;line-height:1.6}
+  .prompt-box{background:#faf8f3;border-radius:12px;padding:14px;margin-bottom:9px;font-size:13px;color:#444;line-height:1.6;font-style:italic}
+
+  /* ADD BTN */
+  .add-btn{width:100%;padding:14px;border-radius:14px;border:2px dashed #d6cfc4;background:#fff;font-weight:600;font-size:15px;color:#888;margin-bottom:14px;transition:all .2s}
+  .add-btn:hover{border-color:var(--ink);color:var(--ink)}
+
+  /* FAB */
+  .fab{position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;padding:14px 24px;border-radius:100px;font-weight:700;font-size:15px;z-index:100;box-shadow:0 8px 24px rgba(26,26,46,.35);display:flex;align-items:center;gap:10px;transition:all .2s}
+  .fab:active{transform:translateX(-50%) scale(.96)}
+  .fab .dot{width:8px;height:8px;border-radius:50%;background:#E07BAF;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.1)}}
+
+  /* MODAL */
+  .modal-bg{position:fixed;inset:0;background:rgba(20,15,25,.55);backdrop-filter:blur(4px);z-index:200;display:none;align-items:flex-end;justify-content:center}
+  .modal-bg.open{display:flex}
+  .modal{background:#fff;border-radius:24px 24px 0 0;width:100%;max-width:560px;max-height:92vh;overflow-y:auto;padding:20px 18px 32px;animation:slideUp .25s ease}
+  @keyframes slideUp{from{transform:translateY(100%)}to{transform:none}}
+  .modal .handle{width:40px;height:4px;background:#e0dcd5;border-radius:100px;margin:0 auto 14px}
+  .modal h3{font-family:'Playfair Display',serif;font-size:20px;margin-bottom:12px}
+  .modal label{font-size:11px;font-weight:700;color:#666;display:block;margin-bottom:5px;text-transform:uppercase;letter-spacing:1px}
+  .modal .field{margin-bottom:11px}
+  .modal .grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:11px}
+  .modal .buttons{display:flex;gap:8px;margin-top:4px}
+  .modal .buttons button.primary{flex:1;padding:13px;border-radius:12px;background:var(--ink);color:#fff;font-weight:700;font-size:14px}
+  .modal .buttons button.secondary{padding:13px 18px;border-radius:12px;background:#fff;border:1px solid #ddd;color:#888;font-weight:600;font-size:14px}
+
+  /* TOGGLES */
+  .toggle-row{display:flex;gap:4px;background:#f5f2ed;border-radius:12px;padding:4px}
+  .toggle-btn{flex:1;padding:8px 6px;border-radius:9px;font-weight:600;font-size:12px;color:#888;transition:all .2s;background:none;text-align:center}
+  .toggle-btn.active{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+
+  /* MODE SWITCH */
+  .mode-switch{display:flex;gap:4px;margin-bottom:14px;background:#f5f2ed;border-radius:12px;padding:4px}
+  .mode-btn{flex:1;padding:9px 10px;border-radius:9px;font-weight:600;font-size:13px;color:#888;transition:all .2s;background:none}
+  .mode-btn.active{background:#fff;color:var(--ink);box-shadow:0 2px 8px rgba(0,0,0,.1)}
+
+  /* AI */
+  .ai-btn{width:100%;padding:13px;border-radius:12px;background:linear-gradient(135deg,#E07BAF,#A78BFA);color:#fff;font-weight:700;font-size:14px;margin-top:4px;margin-bottom:8px;box-shadow:0 4px 14px rgba(167,139,250,.3);transition:all .2s}
+  .ai-btn:active{transform:scale(.98)}
+  .ai-thinking{text-align:center;padding:20px;font-size:15px;color:#888;font-weight:600;animation:blink 1.2s infinite}
+  @keyframes blink{0%,100%{opacity:1}50%{opacity:.4}}
+  .ai-hint{background:linear-gradient(135deg,rgba(224,123,175,.08),rgba(167,139,250,.08));border-radius:10px;padding:10px 14px;font-size:12px;color:#888;line-height:1.5;border-left:3px solid #A78BFA;margin-top:4px}
+
+  /* DAY PICKER */
+  .day-picker{display:grid;gap:8px;margin-top:14px}
+  .day-picker button{display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-radius:12px;background:#f7f5f0;font-weight:600;font-size:14px;color:#444}
+  .day-picker button.none{background:#fff0f0;color:#d55}
+
+  .day-mon{background:#F4A261}.day-tue{background:#E07BAF}.day-wed{background:#A78BFA}
+  .day-thu{background:#2EC4B6}.day-fri{background:#FBBF24}.day-sat{background:#60A5FA}.day-sun{background:#9CA3AF}
+
+  /* PILLAR EDITOR */
+  .pillar-editor-item{display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;background:#faf8f4;margin-bottom:7px}
+  .pillar-editor-item .pe-swatch{width:32px;height:32px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:16px}
+  .pillar-editor-item .pe-info{flex:1;min-width:0}
+  .pillar-editor-item .pe-label{font-weight:700;font-size:13px}
+  .pillar-editor-item .pe-desc{font-size:11px;color:#999;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pillar-editor-item .pe-actions{display:flex;gap:4px;flex-shrink:0}
+  .pillar-editor-item .pe-btn{padding:4px 10px;border-radius:100px;font-size:11px;font-weight:700;cursor:pointer;border:none;background:#fff;color:#555;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+  .pillar-editor-item .pe-del{color:#c44;background:#fff5f5}
+  .color-swatch-row{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+  .color-swatch{width:26px;height:26px;border-radius:50%;cursor:pointer;transition:transform .15s;border:2px solid transparent}
+  .color-swatch.selected{border-color:#1a1a2e;transform:scale(1.2)}
+
+  /* TRANSCRIPTION */
+  .btn-transcribe{background:#f0f4ff;color:#3b5bdb;padding:8px 14px;border-radius:100px;font-size:12px;font-weight:700;cursor:pointer;transition:all .15s}
+  .btn-transcribe:disabled{opacity:.45;cursor:default}
+  .transcribe-progress{font-size:12px;color:#6750a4;padding:8px 12px;background:linear-gradient(135deg,rgba(167,139,250,.08),rgba(59,91,219,.06));border-radius:10px;text-align:center;border:1px solid rgba(167,139,250,.2);margin-top:8px;line-height:1.5}
+  .transcribe-progress::before{content:'🎙 '}
+
+  /* VOICE NOTE */
+  .vn-rec-active{background:linear-gradient(135deg,#e44,#c22)!important;animation:recPulse 1.2s infinite}
+  @keyframes recPulse{0%,100%{box-shadow:0 0 0 0 rgba(220,50,50,.4)}50%{box-shadow:0 0 0 8px rgba(220,50,50,0)}}
+  .idea .vn-play-btn{font-size:11px;padding:3px 8px;border-radius:100px;background:#fff0fa;color:#E07BAF;cursor:pointer;border:none;font-weight:700;margin-left:2px;line-height:1.4}
+
+  .hint{font-size:12px;color:#999;margin-top:4px;line-height:1.5}
+  .empty-state{text-align:center;padding:40px 20px;color:#aaa}
+  .empty-state .big{font-size:40px;margin-bottom:8px}
+  .empty-state p{font-size:14px;line-height:1.6;margin-top:6px}
+
+  .toast{position:fixed;bottom:100px;left:50%;transform:translateX(-50%);background:var(--ink);color:#fff;padding:12px 22px;border-radius:100px;font-size:13px;font-weight:600;z-index:300;box-shadow:0 8px 24px rgba(26,26,46,.3);opacity:0;pointer-events:none;transition:opacity .25s,transform .25s}
+  .toast.show{opacity:1;transform:translateX(-50%) translateY(-4px)}
+
+  .next-action{background:linear-gradient(135deg,#F4A261,#E07BAF);border-radius:20px;padding:22px;color:#fff;margin-bottom:14px}
+  .next-action .kicker{font-size:11px;letter-spacing:2px;text-transform:uppercase;opacity:.8;margin-bottom:6px}
+  .next-action h3{font-family:'Playfair Display',serif;font-size:22px;line-height:1.2;margin-bottom:6px}
+  .next-action p{font-size:14px;opacity:.9;line-height:1.5}
+
+  @media(max-width:500px){
+    .pillar-grid{grid-template-columns:1fr}
+    header{padding:38px 18px 22px}
+    main{padding:16px 12px}
+    .modal{border-radius:22px 22px 0 0}
+    .inspo-grid{grid-template-columns:repeat(3,1fr)}
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="kicker">Yasmine's Content Hub</div>
+  <h1 class="serif">The Hub ✨</h1>
+  <p class="tag">A girl building her life — unfiltered.</p>
+  <div class="streak" id="streak">🔥 <span id="streakText">Setting up your streak…</span></div>
+  <div style="position:relative;margin-top:8px"><span id="syncStatus" style="font-size:11px;font-weight:600;color:rgba(255,255,255,.5)">☁️ Connecting…</span></div>
+</header>
+
+<nav class="tabs">
+  <button class="tab active" data-tab="home">🏠 Today</button>
+  <button class="tab" data-tab="brand">💫 Brand</button>
+  <button class="tab" data-tab="vault">🧠 Vault</button>
+  <button class="tab" data-tab="series">🎬 Series</button>
+  <button class="tab" data-tab="hooks">🪝 Hooks</button>
+  <button class="tab" data-tab="week">📅 Week</button>
+  <button class="tab" data-tab="inspo">💎 Inspo</button>
+  <button class="tab" data-tab="claude">🤖 Claude</button>
+</nav>
+
+<main>
+  <!-- HOME -->
+  <section class="panel active" id="panel-home">
+    <div class="next-action">
+      <div class="kicker">Do this today</div>
+      <h3 id="nextActionTitle">Film video #1</h3>
+      <p id="nextActionDetail">Phone propped up, natural light, no script. 60–90 seconds. Just talk.</p>
+    </div>
+    <div class="card">
+      <h2 class="section">Today's focus</h2>
+      <p class="lead" id="todayDay">Loading…</p>
+      <div id="todayIdeas"></div>
+    </div>
+    <div class="card">
+      <h2 class="section">Quick stats</h2>
+      <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-top:8px">
+        <div style="text-align:center;padding:12px 6px;border-radius:14px;background:var(--life-l)"><div style="font-size:24px;font-weight:700" id="statIdeas">0</div><div style="font-size:10px;color:#888;font-weight:600">IDEAS</div></div>
+        <div style="text-align:center;padding:12px 6px;border-radius:14px;background:#e8f4fd"><div style="font-size:24px;font-weight:700" id="statScripted">0</div><div style="font-size:10px;color:#888;font-weight:600">SCRIPTED</div></div>
+        <div style="text-align:center;padding:12px 6px;border-radius:14px;background:var(--soul-l)"><div style="font-size:24px;font-weight:700" id="statFilmed">0</div><div style="font-size:10px;color:#888;font-weight:600">FILMED</div></div>
+        <div style="text-align:center;padding:12px 6px;border-radius:14px;background:#dcfce7"><div style="font-size:24px;font-weight:700" id="statPosted">0</div><div style="font-size:10px;color:#888;font-weight:600">POSTED</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BRAND -->
+  <section class="panel" id="panel-brand">
+    <div class="card">
+      <h2 class="section">Your brand in one line</h2>
+      <p style="font-size:17px;color:#555;font-style:italic;line-height:1.6;margin-top:8px">"Young woman documenting real life abroad — relatable, sharp, visually beautiful."</p>
+    </div>
+    <div class="card">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <h2 class="section" style="margin:0" id="brandPillarTitle">Your content pillars</h2>
+        <button onclick="openPillarEditor()" style="padding:6px 14px;border-radius:100px;background:#f5f2ed;color:#555;font-size:12px;font-weight:700;flex-shrink:0">✏️ Edit pillars</button>
+      </div>
+      <div id="brandPillars" class="pillar-grid"></div>
+    </div>
+    <div class="card">
+      <h2 class="section">Your brand rules</h2>
+      <div class="rule"><div class="num">1</div><div><b>Authentic chaos</b><p>Your ADHD brain IS the content. Don't hide it — lead with it.</p></div></div>
+      <div class="rule"><div class="num">2</div><div><b>Life in Dubai</b><p>The real version — not just sunsets and skyscrapers.</p></div></div>
+      <div class="rule"><div class="num">3</div><div><b>Figuring it out</b><p>You don't need to have arrived. The journey is the content.</p></div></div>
+      <div class="rule"><div class="num">4</div><div><b>Effortlessly you</b><p>No ChatGPT scripts. Just your voice — refined, not faked.</p></div></div>
+    </div>
+    <div class="darkcard">
+      <h2 class="section serif" style="color:#fff">Quick facts</h2>
+      <div class="stat"><b>📱 Platforms</b><span>Instagram Reels + TikTok — same content, cross-post</span></div>
+      <div class="stat"><b>🌍 Language</b><span>English</span></div>
+      <div class="stat"><b>🎯 Goal</b><span>2–3 posts/week. Done > perfect.</span></div>
+      <div class="stat"><b>🎨 Vibe</b><span>Effortlessly polished — real moments, beautiful framing</span></div>
+    </div>
+  </section>
+
+  <!-- VAULT -->
+  <section class="panel" id="panel-vault">
+    <div class="filter-pills" id="vaultFilters"></div>
+    <div class="filter-pills status-row" id="statusFilters"></div>
+    <button class="add-btn" onclick="openAddIdea()">+ Add new idea</button>
+    <div id="ideasList"></div>
+  </section>
+
+  <!-- SERIES -->
+  <section class="panel" id="panel-series">
+    <div id="seriesListView">
+      <div class="card" style="margin-bottom:14px">
+        <h2 class="section">🎬 Your Series</h2>
+        <p class="lead">Group ideas into a named series. Each episode still belongs to one of your 5 pillars.</p>
+      </div>
+      <button class="add-btn" onclick="openAddSeries()">+ Create new series</button>
+      <div id="seriesList"></div>
+    </div>
+    <div id="seriesDetailView" style="display:none">
+      <div class="series-detail-header">
+        <button class="back-btn" onclick="closeSeriesDetail()">← Back</button>
+        <div>
+          <div style="font-size:11px;color:#aaa;font-weight:700;text-transform:uppercase;letter-spacing:1px">Series</div>
+          <h2 class="section" id="seriesDetailTitle" style="margin-bottom:0;font-size:18px"></h2>
+        </div>
+      </div>
+      <div class="filter-pills" id="seriesDetailFilters"></div>
+      <button class="add-btn" id="seriesAddEpBtn">+ Add episode</button>
+      <div id="seriesDetailIdeas"></div>
+    </div>
+  </section>
+
+  <!-- HOOKS -->
+  <section class="panel" id="panel-hooks">
+    <div class="card" style="margin-bottom:14px">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div>
+          <h2 class="section" style="margin-bottom:4px">🪝 My Hooks</h2>
+          <p class="lead" style="margin:0">Jouw eigen hook bibliotheek. Tik om te kopiëren.</p>
+        </div>
+        <button onclick="openAddHook()" style="flex-shrink:0;padding:9px 16px;border-radius:100px;background:linear-gradient(135deg,#1a1a2e,#0f3460);color:#fff;font-weight:700;font-size:13px">+ Nieuw</button>
+      </div>
+    </div>
+    <div class="filter-pills" id="hookFilters"></div>
+    <div id="hooksList"></div>
+  </section>
+
+  <!-- WEEK -->
+  <section class="panel" id="panel-week">
+    <div class="card" style="margin-bottom:14px">
+      <h2 class="section">Your weekly rhythm</h2>
+      <p class="lead">Assign ideas to days by tapping 📅 on any idea in the Vault.</p>
+    </div>
+    <div id="weekPlanner"></div>
+  </section>
+
+  <!-- INSPO -->
+  <section class="panel" id="panel-inspo">
+    <div class="card" style="margin-bottom:14px">
+      <h2 class="section">Inspo Vault 💎</h2>
+      <p class="lead">Save videos, study them in-app, extract hooks and scripts. Never leave to watch.</p>
+    </div>
+    <div class="filter-pills" id="inspoFilters"></div>
+    <button class="add-btn" onclick="openAddInspo()">+ Save new inspiration</button>
+    <div id="inspoList" class="inspo-grid"></div>
+    <div id="inspoEmpty" class="empty-state" style="display:none"><div class="big">💎</div><b>No inspiration saved yet</b><p>Paste a YouTube, TikTok or Instagram link. Tap any card to study it, extract the hook and script.</p></div>
+  </section>
+
+  <!-- CLAUDE -->
+  <section class="panel" id="panel-claude">
+    <div class="card">
+      <h2 class="section">What Claude can do for you</h2>
+      <div class="help-item"><div class="emoji">💡</div><div><b>Idea development</b><p>Paste a raw thought → Claude turns it into a structured concept with hook, structure, and CTA in YOUR voice.</p></div></div>
+      <div class="help-item"><div class="emoji">🎯</div><div><b>Hook writing</b><p>First 3 seconds are everything. Claude gives you 5 hook options for any idea.</p></div></div>
+      <div class="help-item"><div class="emoji">📝</div><div><b>Caption & hashtags</b><p>Describe your video, Claude writes the caption in your tone. Not corporate. Not fake.</p></div></div>
+      <div class="help-item"><div class="emoji">📊</div><div><b>Weekly check-ins</b><p>Every Sunday, tell Claude what you posted. Claude tracks patterns and pushes you forward.</p></div></div>
+    </div>
+    <div class="card">
+      <h2 class="section">Try these prompts</h2>
+      <div class="prompt-box">"I want to make a video about [topic]. Give me 5 hook options in my voice."</div>
+      <div class="prompt-box">"Here are all my content ideas [paste]. Organise by my 5 pillars and tell me which 3 to film first."</div>
+      <div class="prompt-box">"I just had this thought: [thought]. Is there a video in here? What's the angle?"</div>
+      <div class="prompt-box">"It's Sunday. Here's what I posted this week: [list]. What patterns do you see?"</div>
+    </div>
+    <div class="darkcard">
+      <h2 class="section serif" style="color:#fff">Your next step right now</h2>
+      <p style="color:rgba(255,255,255,.75);font-size:14px;line-height:1.7;margin-bottom:14px">You've been planning this for years. The system is here. Only one thing left:</p>
+      <div style="background:rgba(255,255,255,.1);border-radius:14px;padding:16px">
+        <p class="serif" style="font-size:18px;font-weight:700;margin-bottom:6px">Film video #1 today. 📱</p>
+        <p style="font-size:13px;color:rgba(255,255,255,.65);line-height:1.6">"What it's actually like moving to Dubai alone" — phone propped, natural light, no script. 60–90 seconds. Done.</p>
+      </div>
+    </div>
+
+    <!-- GITHUB SYNC SETUP -->
+    <div class="card" style="margin-top:14px;border:2px solid #2EC4B622">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <span style="font-size:20px">☁️</span>
+        <h2 class="section" style="margin:0">GitHub Sync</h2>
+        <span id="ghSyncStatus" style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;background:#f0fdf4;color:#16a34a;display:none">✓ Connected</span>
+      </div>
+      <p style="font-size:13px;color:#777;line-height:1.6;margin-bottom:12px">Plak hier je GitHub token om je data te synchroniseren tussen je telefoon en laptop. Éénmalig per apparaat.</p>
+      <div style="display:flex;gap:8px">
+        <input id="ghTokenInput" type="password" placeholder="ghp_…" style="flex:1;font-size:13px" />
+        <button onclick="saveGHToken()" style="padding:10px 16px;border-radius:12px;background:#1a1a2e;color:#fff;font-weight:700;font-size:13px;white-space:nowrap">Opslaan</button>
+      </div>
+      <p style="font-size:12px;color:#aaa;margin-top:8px">Token wordt alleen in je browser opgeslagen. Nooit gedeeld.</p>
+    </div>
+
+    <!-- AI KEY SETUP -->
+    <div class="card" style="margin-top:14px;border:2px solid #E07BAF22">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:6px">
+        <span style="font-size:20px">🔑</span>
+        <h2 class="section" style="margin:0">Connect Real AI</h2>
+        <span id="aiKeyStatus" style="font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;background:#f0fdf4;color:#16a34a;display:none">✓ Connected</span>
+      </div>
+      <p style="font-size:13px;color:#777;line-height:1.6;margin-bottom:12px">Paste your Claude API key and the Brain Dump mode becomes genuinely intelligent — real titles, real script detection, real structure. One-time setup. Costs fractions of a cent per use.</p>
+      <p style="font-size:12px;color:#aaa;margin-bottom:10px">Get a free key at <b>console.anthropic.com</b> → API Keys → Create Key</p>
+      <div style="display:flex;gap:8px">
+        <input id="apiKeyInput" type="password" placeholder="sk-ant-api03-…" style="flex:1;font-size:13px" />
+        <button onclick="saveApiKey()" style="padding:10px 16px;border-radius:12px;background:#1a1a2e;color:#fff;font-weight:700;font-size:13px;white-space:nowrap">Save key</button>
+      </div>
+      <p class="hint" style="margin-top:8px">Key is stored only in your browser. Never sent anywhere except Anthropic's servers.</p>
+      <div id="aiKeyError" style="display:none;margin-top:8px;padding:8px 12px;background:#fff5f5;border-radius:8px;font-size:12px;color:#c44"></div>
+    </div>
+  </section>
+
+
+</main>
+
+<!-- FAB -->
+<button class="fab" onclick="openAddIdea()"><span class="dot"></span>+ Capture idea</button>
+
+<!-- ADD/EDIT IDEA MODAL -->
+<div class="modal-bg" id="modalIdea">
+  <div class="modal">
+    <div class="handle"></div>
+    <h3 id="modalIdeaTitle">New idea 💡</h3>
+
+    <div class="mode-switch" id="modeSwitcher">
+      <button class="mode-btn active" id="btnModeStructured" onclick="setMode('structured')">✏️ Detailed</button>
+      <button class="mode-btn" id="btnModeDump" onclick="setMode('dump')">⚡ Quick Capture</button>
+    </div>
+
+    <!-- VOICE NOTE -->
+    <div style="background:#faf4fb;border-radius:12px;padding:12px;margin-bottom:10px;border:1px solid #edd6f0">
+      <div style="display:flex;align-items:center;gap:10px">
+        <button type="button" id="vnRecBtn" onclick="toggleVoiceRecording()" style="padding:8px 16px;border-radius:100px;font-weight:700;font-size:12px;background:linear-gradient(135deg,#E07BAF,#A78BFA);color:#fff;border:none;cursor:pointer;white-space:nowrap;flex-shrink:0">🎙️ Voice note</button>
+        <span id="vnStatus" style="font-size:12px;color:#999;line-height:1.4">Opnemen → automatisch getranscribeerd</span>
+      </div>
+      <audio id="vnPlayer" controls style="width:100%;margin-top:8px;display:none;border-radius:8px"></audio>
+      <div id="vnTranscriptBox" style="display:none;margin-top:8px;font-size:12px;color:#555;background:#fff;border-radius:8px;padding:8px 10px;border:1px solid #edd6f0;line-height:1.6;max-height:80px;overflow-y:auto"></div>
+    </div>
+
+    <!-- BRAIN DUMP -->
+    <div id="dumpSection" style="display:none">
+      <div class="field">
+        <label>Just dump — don't filter, just talk</label>
+        <textarea id="f_dump" rows="5" placeholder="e.g. I want to make a video on Wednesday about how hard it is to cook for yourself in Dubai…"></textarea>
+      </div>
+      <div class="field">
+        <label>Generate script?</label>
+        <div class="toggle-row">
+          <button class="toggle-btn" id="genYes" onclick="setGenScript(true)">Yes — write it for me</button>
+          <button class="toggle-btn active" id="genNo" onclick="setGenScript(false)">No — keep my input</button>
+        </div>
+      </div>
+      <button class="ai-btn" id="aiBtn" onclick="aiProcess()">⚡ Organise &amp; fill in</button>
+      <div id="aiThinking" style="display:none"><div class="ai-thinking">⚡ Organising…</div></div>
+      <p class="ai-hint">Detects your pillar, title, day mentions, and sorts your text into Notes or Script. Connect Claude in the Claude tab for genuinely smart results.</p>
+    </div>
+
+    <!-- STRUCTURED FORM -->
+    <div id="structuredSection">
+      <div class="field">
+        <label>Title / topic *</label>
+        <input id="f_title" placeholder="What's the video about?" />
+      </div>
+      <div class="field">
+        <label>Hook (first 3 seconds)</label>
+        <input id="f_hook" placeholder="What will make them stop scrolling?" />
+      </div>
+
+      <!-- FORMAT -->
+      <div class="field">
+        <label>Format</label>
+        <div class="toggle-row">
+          <button class="toggle-btn active" id="fmtCamera" onclick="setFormat('camera')">🎥 Talk to cam</button>
+          <button class="toggle-btn" id="fmtVoice" onclick="setFormat('voiceover')">🎙️ Voiceover</button>
+          <button class="toggle-btn" id="fmtBroll" onclick="setFormat('broll')">🎞️ B-roll</button>
+        </div>
+      </div>
+
+      <!-- GOAL -->
+      <div class="field">
+        <label>Goal</label>
+        <div class="toggle-row">
+          <button class="toggle-btn active" id="goalInspire" onclick="setGoal('inspire')">✨ Inspire</button>
+          <button class="toggle-btn" id="goalEducate" onclick="setGoal('educate')">🧠 Educate</button>
+          <button class="toggle-btn" id="goalEntertain" onclick="setGoal('entertain')">🎬 Entertain</button>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Notes</label>
+        <textarea id="f_notes" rows="2" placeholder="Rough ideas, keywords, thoughts…"></textarea>
+      </div>
+      <div class="field">
+        <label>Script</label>
+        <textarea id="f_script" rows="3" placeholder="What you'll actually say…"></textarea>
+      </div>
+
+      <div class="grid2">
+        <div>
+          <label>Pillar</label>
+          <select id="f_cat"></select>
+        </div>
+        <div>
+          <label>Platform</label>
+          <select id="f_plat">
+            <option>Both</option><option>Instagram</option><option>TikTok</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Series (optional)</label>
+        <select id="f_series"><option value="">— No series —</option></select>
+      </div>
+
+      <div class="buttons">
+        <button class="primary" onclick="saveIdea()" id="saveIdeaBtn">Save idea ✓</button>
+        <button class="secondary" onclick="closeModal('modalIdea')">Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ADD SERIES MODAL -->
+<div class="modal-bg" id="modalSeries">
+  <div class="modal">
+    <div class="handle"></div>
+    <h3>New series 🎬</h3>
+    <div class="field"><label>Series name *</label><input id="s_name" placeholder="e.g. Becoming the best version of myself" /></div>
+    <div class="field"><label>Pillar (optional)</label>
+      <select id="s_cat"><option value="">— Pick a pillar —</option></select>
+    </div>
+    <div class="field"><label>Description (optional)</label><textarea id="s_desc" rows="2" placeholder="What's this series about?"></textarea></div>
+    <div class="buttons">
+      <button class="primary" onclick="saveSeries()">Create series ✓</button>
+      <button class="secondary" onclick="closeModal('modalSeries')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- ADD INSPO MODAL -->
+<div class="modal-bg" id="modalInspo">
+  <div class="modal">
+    <div class="handle"></div>
+    <h3>Save inspiration 💎</h3>
+    <!-- Option A: upload video directly -->
+    <div style="background:linear-gradient(135deg,#fdf0f7,#f0f4ff);border-radius:14px;padding:14px;margin-bottom:11px">
+      <div style="font-size:12px;font-weight:700;color:#666;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Option A — Upload video from your phone</div>
+      <label id="i_video_label" style="display:flex;align-items:center;gap:10px;cursor:pointer;padding:10px 14px;background:#fff;border-radius:10px;border:2px dashed #e0d6f0">
+        <span style="font-size:20px">📱</span>
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#444">Select video file</div>
+          <div style="font-size:11px;color:#aaa">Save Reel to your phone first, then select it here</div>
+        </div>
+        <input type="file" id="i_video" accept="video/*" style="display:none" onchange="onVideoFileSelected(this)" />
+      </label>
+      <div id="i_video_preview" style="display:none;margin-top:8px;border-radius:10px;overflow:hidden;background:#000">
+        <video id="i_video_player" controls playsinline style="width:100%;max-height:180px;display:block"></video>
+      </div>
+    </div>
+    <!-- Option B: paste link -->
+    <div style="font-size:12px;font-weight:700;color:#666;margin-bottom:6px;text-transform:uppercase;letter-spacing:1px">Option B — Paste a link (YouTube / TikTok)</div>
+    <div class="field"><input id="i_url" placeholder="Paste YouTube or TikTok link (Instagram blocks auto-download)" oninput="previewInspoURL(this.value)" /></div>
+    <div id="i_url_preview" style="margin-bottom:11px;border-radius:12px;overflow:hidden;display:none"></div>
+    <div class="field"><label>Title / what caught your eye</label><input id="i_title" placeholder="e.g. The hook at 0:03, the storytelling…" /></div>
+    <div class="grid2">
+      <div><label>Pillar</label><select id="i_cat"></select></div>
+      <div><label>Status</label><select id="i_status"><option>To recreate</option><option>Inspiration only</option><option>Already used</option></select></div>
+    </div>
+    <div class="field"><label>Notes (optional)</label><textarea id="i_notes" rows="2" placeholder="Why did this stop your scroll?"></textarea></div>
+    <div class="buttons">
+      <button class="primary" onclick="saveInspo()">Save ✓</button>
+      <button class="secondary" onclick="closeModal('modalInspo')">Cancel</button>
+    </div>
+  </div>
+</div>
+
+<!-- HOOK MODAL -->
+<div class="modal-bg" id="modalHook">
+  <div class="modal">
+    <div class="handle"></div>
+    <h3 id="hookModalTitle">🪝 Nieuwe hook</h3>
+    <input type="hidden" id="hk_id" value="" />
+    <div class="field">
+      <label>Hook tekst *</label>
+      <textarea id="hk_text" rows="3" placeholder="De eerste zin die iemand doet stoppen met scrollen…"></textarea>
+    </div>
+    <div class="grid2">
+      <div class="field">
+        <label>Type</label>
+        <select id="hk_type">
+          <option>Curiosity</option>
+          <option>Hot take</option>
+          <option>Relatable</option>
+          <option>Story</option>
+          <option>B-roll</option>
+          <option>Educate</option>
+          <option>Inspire</option>
+        </select>
+      </div>
+      <div class="field">
+        <label>Pillar</label>
+        <select id="hk_cat"></select>
+      </div>
+    </div>
+    <div class="buttons">
+      <button class="primary" onclick="saveHook()" id="saveHookBtn">Opslaan ✓</button>
+      <button class="secondary" onclick="closeModal('modalHook')">Annuleren</button>
+    </div>
+  </div>
+</div>
+
+<!-- PILLAR EDITOR MODAL -->
+<div class="modal-bg" id="modalPillars">
+  <div class="modal" style="max-height:90vh;overflow-y:auto">
+    <div class="handle"></div>
+    <h3>✏️ Your content pillars</h3>
+    <p style="font-size:12px;color:#999;margin-bottom:14px;line-height:1.6">Add, rename or remove pillars. All your ideas stay linked — even if you rename a pillar.</p>
+    <div id="pillarEditorList"></div>
+    <div style="border-top:1px solid #f0ede8;margin-top:10px;padding-top:14px">
+      <p style="font-size:11px;font-weight:700;color:#aaa;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px" id="pillarFormTitle">+ Add new pillar</p>
+      <input type="hidden" id="pe_key" value="" />
+      <div class="field" style="margin-bottom:9px"><label>Emoji</label><input id="pe_emoji" placeholder="🌟" maxlength="4" style="font-size:22px;text-align:center;padding:8px" /></div>
+      <div class="field" style="margin-bottom:9px"><label>Pillar name *</label><input id="pe_label" placeholder="e.g. Travel" /></div>
+      <div class="field" style="margin-bottom:9px"><label>Description</label><input id="pe_desc" placeholder="What kind of content goes here?" /></div>
+      <div class="field" style="margin-bottom:9px">
+        <label>Colour</label>
+        <div class="color-swatch-row" id="pillarColorSwatches"></div>
+        <input type="hidden" id="pe_color" value="#6366F1" />
+        <input type="hidden" id="pe_light" value="#EEF2FF" />
+      </div>
+      <div class="buttons" style="margin-top:4px">
+        <button class="primary" onclick="savePillar()" id="savePillarBtn">Add pillar</button>
+        <button class="secondary" onclick="resetPillarForm()">Cancel</button>
+      </div>
+    </div>
+    <button onclick="closeModal('modalPillars')" style="width:100%;padding:12px;border-radius:12px;background:#f5f2ed;color:#888;font-weight:600;font-size:14px;margin-top:10px">Done</button>
+  </div>
+</div>
+
+<!-- DAY PICKER -->
+<div class="modal-bg" id="modalDay">
+  <div class="modal">
+    <div class="handle"></div>
+    <h3>Assign to a day</h3>
+    <div class="day-picker" id="dayPicker"></div>
+  </div>
+</div>
+
+<!-- INSPO DETAIL MODAL -->
+<div class="idmodal-bg" id="modalInspoDetail">
+  <div class="idmodal">
+    <div id="idEmbed"></div>
+    <div class="idmodal-body">
+      <div class="idmodal-tags" id="idTags"></div>
+      <div class="ifield">
+        <div class="ifield-lbl">🪝 Hook <button class="ilbl-act" id="idHookSaveBtn">+ Save to Hooks tab</button></div>
+        <textarea id="idHook" rows="2" placeholder="The hook that made you stop scrolling…"></textarea>
+      </div>
+      <div class="ifield">
+        <div class="ifield-lbl">📝 Script / what they say</div>
+        <textarea id="idScript" rows="4" placeholder="Their spoken content — transcript, key lines…"></textarea>
+      </div>
+      <div class="ifield">
+        <div class="ifield-lbl">💭 Notes / why it works</div>
+        <textarea id="idNotes" rows="3" placeholder="What stopped your scroll? What would you adapt?"></textarea>
+      </div>
+      <div class="inspo-ai-block">
+        <div class="ai-label">✨ AI Analyze — paste the transcript or caption and AI will extract hook, script & notes</div>
+        <textarea id="idTranscript" placeholder="Paste transcript, caption, or spoken content here…" rows="3"></textarea>
+        <button class="ai-btn-sm" id="idAiBtn" onclick="processInspoDetailAI()">✨ Analyze & Extract</button>
+      </div>
+      <div id="transcribeProgress" class="transcribe-progress" style="display:none">Whisper model laden…</div>
+      <div class="idmodal-actions">
+        <label style="padding:8px 14px;border-radius:100px;font-size:12px;font-weight:600;background:#f0f4ff;color:#3b5bdb;cursor:pointer">
+          📱 Upload video
+          <input type="file" accept="video/*" style="display:none" onchange="uploadVideoForInspo(this)">
+        </label>
+        <button id="idTranscribeBtn" class="btn-transcribe" onclick="startTranscription()">🎙 Auto-transcribe</button>
+        <button class="btn-open" id="idOpenBtn">↗ Open original</button>
+        <button id="idVaultBtn">→ Send to Vault</button>
+        <button onclick="closeModal('modalInspoDetail')" style="background:#f5f2ed;color:#888">Close</button>
+        <button class="btn-del" id="idDelBtn">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script async src="//www.instagram.com/embed.js"></script>
+
+<script>
+// ─── PILLARS (CATS) — editable, saved in localStorage ─────────────────────────
+const DEFAULT_CATS = {
+  life:    {label:"Dubai Life",       emoji:"🌆",color:"#F4A261",light:"#FFF4EC",desc:"Day in my life, cafés, costs, expat life, culture"},
+  hustle:  {label:"The Hustle",       emoji:"⚡",color:"#2EC4B6",light:"#EDFAFA",desc:"Jobs, discipline, routines, business, ADHD productivity"},
+  soul:    {label:"Being a Woman",    emoji:"🌸",color:"#E07BAF",light:"#FDF0F7",desc:"Boundaries, relationships, self-worth, faith, healing"},
+  beauty:  {label:"Beauty & Fashion", emoji:"💄",color:"#F472B6",light:"#FDF2F8",desc:"Makeup, style, self-care, outfit-of-the-day"},
+  creative:{label:"Creative",         emoji:"✍️",color:"#FBBF24",light:"#FFFBEB",desc:"Poetry, writing, art, anything that doesn't fit a box"},
+};
+const CAT_COLORS=[
+  {color:"#F4A261",light:"#FFF4EC"},{color:"#2EC4B6",light:"#EDFAFA"},{color:"#E07BAF",light:"#FDF0F7"},
+  {color:"#F472B6",light:"#FDF2F8"},{color:"#FBBF24",light:"#FFFBEB"},{color:"#6366F1",light:"#EEF2FF"},
+  {color:"#8B5CF6",light:"#F5F3FF"},{color:"#10B981",light:"#ECFDF5"},{color:"#EF4444",light:"#FEF2F2"},
+  {color:"#3B82F6",light:"#EFF6FF"},{color:"#F97316",light:"#FFF7ED"},{color:"#84CC16",light:"#F7FEE7"},
+];
+
+function loadCats(){
+  try{const s=localStorage.getItem('contentHub_cats');if(s)return JSON.parse(s);}catch(e){}
+  return JSON.parse(JSON.stringify(DEFAULT_CATS));
+}
+function saveCats(){localStorage.setItem('contentHub_cats',JSON.stringify(CATS));injectCatStyles();populateCatSelects();renderBrandPillars();}
+
+let CATS=loadCats();
+
+function firstCatKey(){return Object.keys(CATS)[0]||'life';}
+
+function injectCatStyles(){
+  let el=document.getElementById('dynamic-cat-styles');
+  if(!el){el=document.createElement('style');el.id='dynamic-cat-styles';document.head.appendChild(el);}
+  el.textContent=Object.entries(CATS).map(([k,c])=>
+    `.cat-${k}{border-color:${c.color};background:${c.light};color:${c.color}}.border-${k}{border-left-color:${c.color}!important}`
+  ).join('');
+}
+
+function populateCatSelects(){
+  const opts=Object.entries(CATS).map(([k,c])=>`<option value="${k}">${c.emoji} ${c.label}</option>`).join('');
+  const sOpts=`<option value="">— Pick a pillar —</option>`+opts;
+  ['f_cat','i_cat','hk_cat'].forEach(id=>{const el=document.getElementById(id);if(el){const v=el.value;el.innerHTML=opts;el.value=v||firstCatKey();}});
+  const sc=document.getElementById('s_cat');if(sc){const v=sc.value;sc.innerHTML=sOpts;sc.value=v||'';}
+}
+
+function renderBrandPillars(){
+  const keys=Object.keys(CATS);
+  document.getElementById('brandPillarTitle').textContent=`Your content pillars (${keys.length})`;
+  document.getElementById('brandPillars').innerHTML=Object.entries(CATS).map(([k,c])=>
+    `<div class="pillar" style="background:${c.light};border-left-color:${c.color}">
+      <b>${c.emoji} ${c.label}</b>
+      <span>${c.desc||'Tap ✏️ Edit pillars to add a description'}</span>
+    </div>`
+  ).join('');
+}
+
+// ─── PILLAR EDITOR ────────────────────────────────────────────────────────────
+let _pillarSelectedColor=CAT_COLORS[5]; // default: indigo
+
+window.openPillarEditor=function(){
+  renderPillarEditorList();
+  renderColorSwatches(null);
+  resetPillarForm();
+  document.getElementById('modalPillars').classList.add('open');
+};
+
+function renderPillarEditorList(){
+  const keys=Object.keys(CATS);
+  document.getElementById('pillarEditorList').innerHTML=keys.map(k=>{
+    const c=CATS[k];
+    return `<div class="pillar-editor-item">
+      <div class="pe-swatch" style="background:${c.light};color:${c.color}">${c.emoji}</div>
+      <div class="pe-info">
+        <div class="pe-label">${c.label}</div>
+        <div class="pe-desc">${c.desc||'No description'}</div>
+      </div>
+      <div class="pe-actions">
+        <button class="pe-btn" onclick="loadPillarForEdit('${k}')">Edit</button>
+        ${keys.length>1?`<button class="pe-btn pe-del" onclick="deletePillar('${k}')">✕</button>`:''}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderColorSwatches(selectedColor){
+  document.getElementById('pillarColorSwatches').innerHTML=CAT_COLORS.map((p,i)=>
+    `<div class="color-swatch${p.color===selectedColor?' selected':''}" style="background:${p.color}" onclick="selectPillarColor(${i})" title="${p.color}"></div>`
+  ).join('');
+  // default selection if none
+  if(!selectedColor){
+    _pillarSelectedColor=CAT_COLORS[5];
+    document.getElementById('pe_color').value=CAT_COLORS[5].color;
+    document.getElementById('pe_light').value=CAT_COLORS[5].light;
+    document.querySelectorAll('#pillarColorSwatches .color-swatch')[5]?.classList.add('selected');
+  }
+}
+
+window.selectPillarColor=function(i){
+  _pillarSelectedColor=CAT_COLORS[i];
+  document.getElementById('pe_color').value=CAT_COLORS[i].color;
+  document.getElementById('pe_light').value=CAT_COLORS[i].light;
+  document.querySelectorAll('#pillarColorSwatches .color-swatch').forEach((el,j)=>el.classList.toggle('selected',j===i));
+};
+
+window.loadPillarForEdit=function(key){
+  const c=CATS[key];if(!c)return;
+  document.getElementById('pe_key').value=key;
+  document.getElementById('pe_emoji').value=c.emoji||'';
+  document.getElementById('pe_label').value=c.label||'';
+  document.getElementById('pe_desc').value=c.desc||'';
+  document.getElementById('pe_color').value=c.color;
+  document.getElementById('pe_light').value=c.light;
+  document.getElementById('pillarFormTitle').textContent='✏️ Edit pillar';
+  document.getElementById('savePillarBtn').textContent='Save changes';
+  renderColorSwatches(c.color);
+  // scroll form into view
+  document.getElementById('pillarFormTitle').scrollIntoView({behavior:'smooth',block:'nearest'});
+};
+
+window.resetPillarForm=function(){
+  document.getElementById('pe_key').value='';
+  document.getElementById('pe_emoji').value='';
+  document.getElementById('pe_label').value='';
+  document.getElementById('pe_desc').value='';
+  document.getElementById('pillarFormTitle').textContent='+ Add new pillar';
+  document.getElementById('savePillarBtn').textContent='Add pillar';
+  renderColorSwatches(null);
+};
+
+window.savePillar=function(){
+  const key=document.getElementById('pe_key').value.trim();
+  const label=document.getElementById('pe_label').value.trim();
+  const emoji=document.getElementById('pe_emoji').value.trim()||'📌';
+  const desc=document.getElementById('pe_desc').value.trim();
+  const color=document.getElementById('pe_color').value||'#6366F1';
+  const light=document.getElementById('pe_light').value||'#EEF2FF';
+  if(!label){toast('Geef je pillar een naam');return;}
+  if(key){
+    // Edit existing
+    CATS[key]={...CATS[key],label,emoji,desc,color,light};
+    toast(`✓ "${label}" bijgewerkt`);
+  } else {
+    // Add new — generate a slug key
+    let slug=label.toLowerCase().replace(/[^a-z0-9]/g,'_').replace(/_+/g,'_').replace(/^_|_$/g,'')||'pillar';
+    if(CATS[slug]){slug=slug+'_'+Date.now();}
+    CATS[slug]={label,emoji,desc,color,light};
+    toast(`✓ "${label}" toegevoegd`);
+  }
+  saveCats();
+  renderPillarEditorList();
+  resetPillarForm();
+  renderAll();
+};
+
+window.deletePillar=function(key){
+  const c=CATS[key];if(!c)return;
+  const usedCount=state.ideas.filter(i=>i.cat===key).length;
+  const warn=usedCount>0?` (${usedCount} ideeën gebruiken deze pillar — ze blijven bestaan)`:'';
+  if(!confirm(`"${c.label}" verwijderen?${warn}`))return;
+  delete CATS[key];
+  saveCats();
+  renderPillarEditorList();
+  renderAll();
+  toast(`🗑 "${c.label}" verwijderd`);
+};
+const DAYS = [
+  {key:"mon",label:"Monday",   short:"Mon",role:"📱 Capture day",  cls:"day-mon"},
+  {key:"tue",label:"Tuesday",  short:"Tue",role:"💡 Idea dump",    cls:"day-tue"},
+  {key:"wed",label:"Wednesday",short:"Wed",role:"🎥 Batch filming", cls:"day-wed"},
+  {key:"thu",label:"Thursday", short:"Thu",role:"✂️ Edit day",     cls:"day-thu"},
+  {key:"fri",label:"Friday",   short:"Fri",role:"✅ Post + engage", cls:"day-fri"},
+  {key:"sat",label:"Saturday", short:"Sat",role:"🔍 Save inspo",   cls:"day-sat"},
+  {key:"sun",label:"Sunday",   short:"Sun",role:"🧘 Rest",         cls:"day-sun"},
+];
+const STATUS        = ["💡 Idea","📝 Scripted","🎥 Filmed","✂️ Edited","✅ Posted"];
+const STATUS_ACTIVE = ["💡 Idea","📝 Scripted","🎥 Filmed","✂️ Edited"];
+
+// ─── HOOK TYPES ───────────────────────────────────────────────────────────────
+const HOOK_TYPES = ["All","Curiosity","Hot take","Relatable","Story","B-roll","Educate","Inspire"];
+
+// ─── GITHUB SYNC ──────────────────────────────────────────────────────────────
+const GH_OWNER = 'yasminee2000';
+const GH_REPO  = 'Social-Media-Hub';
+const GH_FILE  = 'sync-data.json';
+function getGHToken(){ return localStorage.getItem('contentHub_ghToken')||''; }
+let ghFileSha = null;
+
+async function ghLoad(){
+  const GH_TOKEN=getGHToken();if(!GH_TOKEN)return null;
+  try{
+    const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`,{
+      headers:{'Authorization':'token '+GH_TOKEN,'Accept':'application/vnd.github.v3+json'}
+    });
+    if(!r.ok) return null;
+    const d = await r.json();
+    ghFileSha = d.sha;
+    return JSON.parse(atob(d.content.replace(/\s/g,'')));
+  }catch{return null;}
+}
+
+async function ghSave(data){
+  const GH_TOKEN=getGHToken();if(!GH_TOKEN){setSyncStatus('error');return;}
+  setSyncStatus('syncing');
+  try{
+    if(!ghFileSha){
+      const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`,{
+        headers:{'Authorization':'token '+GH_TOKEN,'Accept':'application/vnd.github.v3+json'}
+      });
+      if(r.ok){const d=await r.json();ghFileSha=d.sha;}
+    }
+    const content = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+    const body = {message:'sync',content};
+    if(ghFileSha) body.sha = ghFileSha;
+    const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`,{
+      method:'PUT',
+      headers:{'Authorization':'token '+getGHToken(),'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},
+      body:JSON.stringify(body)
+    });
+    if(r.ok){const d=await r.json();ghFileSha=d.content?.sha||ghFileSha;setSyncStatus('synced');}
+    else setSyncStatus('error');
+  }catch{setSyncStatus('error');}
+}
+
+window.saveGHToken=function(){
+  const t=document.getElementById('ghTokenInput').value.trim();
+  if(!t){toast('Voer een token in');return;}
+  localStorage.setItem('contentHub_ghToken',t);
+  document.getElementById('ghTokenInput').value='';
+  document.getElementById('ghSyncStatus').style.display='inline';
+  toast('GitHub sync actief ✓');
+  syncOnLoad();
+};
+function updateGHTokenUI(){
+  const el=document.getElementById('ghSyncStatus');
+  if(el)el.style.display=getGHToken()?'inline':'none';
+}
+
+function setSyncStatus(s){
+  const el=document.getElementById('syncStatus');if(!el)return;
+  const map={syncing:['⏫ Syncing…','#888'],synced:['☁️ Synced','#16a34a'],error:['⚠️ Sync error','#c44']};
+  const[txt,col]=map[s]||map.error;
+  el.textContent=txt;el.style.color=col;
+}
+
+// Load from GitHub on startup and merge if newer
+async function syncOnLoad(){
+  const remote = await ghLoad();
+  if(!remote) return;
+  // Use remote if it has more ideas or inspo than local (simple merge strategy)
+  const local = state;
+  const remoteTotal = (remote.ideas||[]).length + (remote.inspo||[]).length;
+  const localTotal  = (local.ideas||[]).length  + (local.inspo||[]).length;
+  if(remoteTotal >= localTotal){
+    fixState(remote);
+    state = remote;
+    localStorage.setItem(KEY, JSON.stringify(state));
+    renderAll();
+    setSyncStatus('synced');
+  }
+}
+
+// ─── STATE ────────────────────────────────────────────────────────────────────
+const KEY = "contentHub_v5";
+let state = loadState();
+let filterCat = null, filterStatus = null, filterInspo = null;
+let editingAssignId = null, editingIdeaId = null;
+let currentMode = 'structured', currentFormat = 'camera', currentGoal = 'inspire', genScript = false;
+let viewingSeriesId = null, seriesEpFilter = null;
+let hookFilterType = "All";
+
+const SEED_IDEAS = [
+  {id:1,title:"What it's actually like moving to Dubai alone",cat:"life",  status:"💡 Idea",hook:"Everyone glamourises it. Here's the real version.",          platform:"Both",    format:"camera",   goal:"inspire",  seriesId:null,notes:"",script:"",day:null},
+  {id:2,title:"My ADHD brain is my content superpower",       cat:"soul",  status:"💡 Idea",hook:"I have 47 ideas at once — and that's actually the strategy.",platform:"Both",    format:"camera",   goal:"inspire",  seriesId:null,notes:"",script:"",day:null},
+  {id:3,title:"Hot take: you don't need to be an expert",     cat:"soul",  status:"💡 Idea",hook:"I'm not an expert. I'm just living.",                        platform:"Both",    format:"camera",   goal:"entertain",seriesId:null,notes:"",script:"",day:null},
+  {id:4,title:"A day in my life in Dubai (honest version)",   cat:"life",  status:"💡 Idea",hook:"Not the highlight reel. The real one.",                      platform:"Instagram",format:"broll",   goal:"entertain",seriesId:null,notes:"",script:"",day:null},
+  {id:5,title:"Why I keep starting over (and why that's okay)",cat:"hustle",status:"💡 Idea",hook:"Real estate. Sales. Travel. Dubai. What's next?",           platform:"Both",    format:"camera",   goal:"inspire",  seriesId:null,notes:"",script:"",day:null},
+];
+
+function loadState(){
+  for(const k of [KEY,"contentHub_v4","contentHub_v3","contentHub_v2"]){
+    try{const s=JSON.parse(localStorage.getItem(k));if(s){fixState(s);if(k!==KEY)localStorage.setItem(KEY,JSON.stringify(s));return s;}}catch{}
+  }
+  return {ideas:[...SEED_IDEAS.map(i=>({...i}))],inspo:[],series:[],userHooks:[],stats:{lastPostedAt:null}};
+}
+function fixState(s){
+  if(!s.ideas)  s.ideas  = [...SEED_IDEAS.map(i=>({...i}))];
+  if(!s.inspo)  s.inspo  = [];
+  if(!s.series) s.series = [];
+  if(!s.stats)      s.stats     = {lastPostedAt:null};
+  if(!s.userHooks)  s.userHooks = [];
+  s.inspo.forEach(i=>{if(!('videoUrl' in i))i.videoUrl=null;});
+  s.ideas.forEach(i=>{
+    if(!i.format)              i.format   = 'camera';
+    if(!i.goal)                i.goal     = 'inspire';
+    if(!('seriesId' in i))     i.seriesId = null;
+    if(!('script' in i))       i.script   = '';
+    if(!('notes' in i)||i.notes===undefined) i.notes = '';
+    // migrate old cat names
+    if(i.cat==='mind')  i.cat='soul';
+    if(i.cat==='woman') i.cat='life';
+  });
+}
+function save(){localStorage.setItem(KEY,JSON.stringify(state));ghSave(state);}
+
+// ─── TABS ─────────────────────────────────────────────────────────────────────
+document.querySelectorAll('.tab').forEach(t=>{
+  t.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(x=>x.classList.remove('active'));
+    document.querySelectorAll('.panel').forEach(x=>x.classList.remove('active'));
+    t.classList.add('active');
+    document.getElementById('panel-'+t.dataset.tab).classList.add('active');
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(t.dataset.tab!=='series') closeSeriesDetail();
+    if(t.dataset.tab==='hooks') renderHooks();
+  });
+});
+
+// ─── RENDER ───────────────────────────────────────────────────────────────────
+function renderAll(){renderStreak();renderHome();renderVault();renderSeries();renderWeek();renderInspo();renderStats();}
+
+function renderStreak(){
+  const p=state.ideas.filter(i=>i.status==="✅ Posted").length;
+  document.getElementById('streakText').textContent=p===0?"Ready for your first post":p<3?`${p} post${p>1?"s":""}— keep the momentum`:`🔥 ${p} posts published — you're a creator now`;
+}
+function renderStats(){
+  const a=state.ideas;
+  document.getElementById('statIdeas').textContent    =a.filter(i=>i.status==="💡 Idea").length;
+  document.getElementById('statScripted').textContent =a.filter(i=>i.status==="📝 Scripted").length;
+  document.getElementById('statFilmed').textContent   =a.filter(i=>i.status==="🎥 Filmed"||i.status==="✂️ Edited").length;
+  document.getElementById('statPosted').textContent   =a.filter(i=>i.status==="✅ Posted").length;
+}
+function todayKey(){return['sun','mon','tue','wed','thu','fri','sat'][new Date().getDay()];}
+
+function renderHome(){
+  const k=todayKey(),day=DAYS.find(d=>d.key===k);
+  document.getElementById('todayDay').textContent=`${day.label} — ${day.role}`;
+  const mine=state.ideas.filter(i=>i.day===k),box=document.getElementById('todayIdeas');
+  box.innerHTML=mine.length===0?`<div class="empty-state" style="padding:18px 10px"><p style="color:#aaa;font-size:13px">No ideas assigned to ${day.label} yet.</p></div>`:mine.map(i=>ideaHTML(i,false)).join('');
+  const next=state.ideas.find(i=>i.status==="💡 Idea");
+  if(next){document.getElementById('nextActionTitle').textContent=`Film: "${next.title}"`;document.getElementById('nextActionDetail').textContent=next.hook?`Hook: "${next.hook}"`:'60–90 seconds. Just talk.';}
+}
+
+function renderVault(){
+  const active=state.ideas.filter(i=>i.status!=="✅ Posted");
+  const fEl=document.getElementById('vaultFilters');
+  let h=`<button class="pill ${!filterCat?'active':''}" onclick="setFilter(null)">All (${active.length})</button>`;
+  for(const[k,c]of Object.entries(CATS)){const n=active.filter(i=>i.cat===k).length;h+=`<button class="pill ${filterCat===k?'active':''}" onclick="setFilter('${k}')" style="${filterCat===k?`background:${c.color};color:#fff`:`background:${c.light};color:#444`}">${c.emoji} ${c.label} (${n})</button>`;}
+  fEl.innerHTML=h;
+  const sfEl=document.getElementById('statusFilters');
+  const pN=state.ideas.filter(i=>i.status==="✅ Posted").length;
+  let sh=`<button class="pill ${filterStatus===null?'active':''}" onclick="setStatusFilter(null)">📋 All active</button>`;
+  STATUS_ACTIVE.forEach(s=>{const n=active.filter(i=>i.status===s).length;sh+=`<button class="pill ${filterStatus===s?'active':''}" onclick="setStatusFilter('${s}')">${s} (${n})</button>`;});
+  sh+=`<button class="pill pill-archive ${filterStatus==='✅ Posted'?'active':''}" onclick="setStatusFilter('✅ Posted')">📦 Archive (${pN})</button>`;
+  sfEl.innerHTML=sh;
+  let list=filterStatus==='✅ Posted'?state.ideas.filter(i=>i.status==="✅ Posted"):filterStatus?active.filter(i=>i.status===filterStatus):active;
+  if(filterCat)list=list.filter(i=>i.cat===filterCat);
+  const box=document.getElementById('ideasList');
+  box.innerHTML=list.length===0?`<div class="empty-state"><div class="big">${filterStatus==='✅ Posted'?'✅':'🧠'}</div><b>${filterStatus==='✅ Posted'?'Nothing archived yet':'No ideas here yet'}</b><p>${filterStatus==='✅ Posted'?'Mark something as Posted and it moves here.':'Tap "+ Add new idea" to start.'}</p></div>`:list.map(i=>ideaHTML(i,true)).join('');
+}
+
+function scl(s){return s==="💡 Idea"?"stag-idea":s==="📝 Scripted"?"stag-scripted":s==="🎥 Filmed"?"stag-filmed":s==="✂️ Edited"?"stag-edited":"stag-posted";}
+function fmtLabel(f){return f==='voiceover'?'🎙️ VO':f==='broll'?'🎞️ B-roll':'🎥 Cam';}
+function goalLabel(g){return g==='educate'?'🧠 Educate':g==='entertain'?'🎬 Entertain':'✨ Inspire';}
+
+function ideaHTML(i,showAssign){
+  const c=CATS[i.cat]||CATS[firstCatKey()]||Object.values(CATS)[0],day=i.day?DAYS.find(d=>d.key===i.day):null,ser=i.seriesId?state.series.find(s=>s.id===i.seriesId):null;
+  const statusBtns=STATUS.map(s=>`<button class="${i.status===s?'active':''}" onclick="setStatus(${i.id},'${s}')">${s}</button>`).join('');
+  return `<div class="idea border-${i.cat}">
+    <div class="top"><div style="flex:1">
+      <div class="tags">
+        <span class="tag cat-${i.cat}">${c.emoji} ${c.label}</span>
+        <span class="tag stag ${scl(i.status)}">${i.status}</span>
+        <span class="tag fmt">${fmtLabel(i.format)}</span>
+        <span class="tag goal">${goalLabel(i.goal)}</span>
+        ${ser?`<span class="tag ser">🎬 ${esc(ser.name)}</span>`:''}
+        <span class="tag plat">📱 ${i.platform}</span>
+        ${day?`<span class="tag day">📅 ${day.label}</span>`:''}
+      </div>
+      <div class="title" onclick="openEditIdea(${i.id})">${esc(i.title)}</div>
+      ${i.hook?`<div class="hook">"${esc(i.hook)}"</div>`:''}
+      ${i.script?`<div class="script-preview">📝 ${esc(i.script.substring(0,80))}${i.script.length>80?'…':''}</div>`:''}
+    </div>
+    <div class="card-actions">
+      ${i.voiceNoteKey?`<button class="vn-play-btn" onclick="event.stopPropagation();playVoiceNote('${i.voiceNoteKey}')">🎙️</button>`:''}
+      <button class="edit-btn" onclick="openEditIdea(${i.id})">✏️</button>
+      <button class="del" onclick="deleteIdea(${i.id})">×</button>
+    </div></div>
+    <div class="actions">${statusBtns}${showAssign?`<button class="assign-btn" onclick="openDayPicker(${i.id})">${day?'📅 Change day':'📅 Assign day'}</button>`:''}</div>
+  </div>`;
+}
+
+function renderSeries(){
+  const box=document.getElementById('seriesList');
+  if(state.series.length===0){box.innerHTML=`<div class="empty-state"><div class="big">🎬</div><b>No series yet</b><p>Create your first series — like "Get fit with me" or "Becoming the best version of myself".</p></div>`;return;}
+  box.innerHTML=state.series.map(s=>{
+    const eps=state.ideas.filter(i=>i.seriesId===s.id),c=s.cat?CATS[s.cat]:null;
+    return `<div class="series-card ${s.cat?`border-${s.cat}`:''}" onclick="openSeriesDetail(${s.id})">
+      <div class="s-top"><div style="flex:1">
+        <h3>${esc(s.name)}</h3>
+        <div style="display:flex;gap:6px;flex-wrap:wrap">
+          ${c?`<span class="tag cat-${s.cat}">${c.emoji} ${c.label}</span>`:''}
+          ${s.desc?`<span style="font-size:12px;color:#aaa">${esc(s.desc)}</span>`:''}
+        </div>
+        <div class="ep-count">${eps.length} episode${eps.length!==1?'s':''}</div>
+      </div>
+      <button class="s-del" onclick="event.stopPropagation();deleteSeries(${s.id})">×</button>
+      </div>
+    </div>`;
+  }).join('');
+}
+
+function renderSeriesDetail(sid){
+  const s=state.series.find(x=>x.id===sid);if(!s)return;
+  document.getElementById('seriesDetailTitle').textContent=s.name;
+  let eps=state.ideas.filter(i=>i.seriesId===sid);
+  const fEl=document.getElementById('seriesDetailFilters');
+  let fh=`<button class="pill ${seriesEpFilter===null?'active':''}" onclick="setSeriesEpFilter(null,${sid})">All (${eps.length})</button>`;
+  STATUS.forEach(st=>{const n=eps.filter(i=>i.status===st).length;if(n>0)fh+=`<button class="pill ${seriesEpFilter===st?'active':''}" onclick="setSeriesEpFilter('${st}',${sid})">${st} (${n})</button>`;});
+  fEl.innerHTML=fh;
+  if(seriesEpFilter)eps=eps.filter(i=>i.status===seriesEpFilter);
+  document.getElementById('seriesDetailIdeas').innerHTML=eps.length===0?`<div class="empty-state"><div class="big">🎬</div><b>No episodes yet</b><p>Tap "+ Add episode" to create one.</p></div>`:eps.map(i=>ideaHTML(i,true)).join('');
+}
+
+// ─── HOOKS PAGE ───────────────────────────────────────────────────────────────
+function renderHooks(){
+  if(!state.userHooks)state.userHooks=[];
+  const all=state.userHooks;
+
+  // Build type pills — only show types that exist in your hooks, plus All
+  const usedTypes=[...new Set(all.map(h=>h.type))].filter(Boolean);
+  const pills=['All',...HOOK_TYPES.filter(t=>t!=='All'&&usedTypes.includes(t))];
+  document.getElementById('hookFilters').innerHTML=pills.map(t=>
+    `<button class="pill ${hookFilterType===t?'active':''}" onclick="setHookFilter('${t}')">${t}</button>`
+  ).join('');
+
+  const filtered=hookFilterType==='All'?all:all.filter(h=>h.type===hookFilterType);
+
+  if(all.length===0){
+    document.getElementById('hooksList').innerHTML=`
+      <div class="empty-state">
+        <div class="big">🪝</div>
+        <b>Nog geen hooks</b>
+        <p>Druk op <b>+ Nieuw</b> om je eerste hook toe te voegen.<br>Of sla een hook op via de Inspo tab.</p>
+      </div>`;
+    return;
+  }
+
+  // Group by type
+  const byType={};
+  filtered.forEach(h=>{if(!byType[h.type])byType[h.type]=[];byType[h.type].push(h);});
+
+  let html='';
+  for(const[type,items]of Object.entries(byType)){
+    html+=`<div class="hook-section-title">${type}</div>`;
+    items.forEach(h=>{
+      const c=CATS[h.cat]||Object.values(CATS)[0];
+      const fromInspo=h.source==='inspo';
+      html+=`<div class="hook-card border-${h.cat}" onclick="copyHook(this,'${escAttr(h.text)}')">
+        <div class="hook-type" style="display:flex;justify-content:space-between;align-items:center">
+          <span>${fromInspo?'📎 Van Inspo':h.type}</span>
+          <span style="display:flex;gap:4px">
+            ${!fromInspo?`<button style="background:rgba(26,26,46,.07);border:none;color:#555;font-size:10px;padding:2px 8px;border-radius:100px;cursor:pointer;font-weight:700" onclick="event.stopPropagation();openEditHook(${h.id})">edit</button>`:''}
+            <button style="background:rgba(200,50,50,.08);border:none;color:#c44;font-size:10px;padding:2px 8px;border-radius:100px;cursor:pointer;font-weight:700" onclick="event.stopPropagation();deleteUserHook(${h.id})">✕</button>
+          </span>
+        </div>
+        <div class="hook-text">${esc(h.text)}</div>
+        <div class="hook-cat">${c.emoji} ${c.label}</div>
+        <div class="copied-badge">✓ Gekopieerd!</div>
+      </div>`;
+    });
+  }
+  document.getElementById('hooksList').innerHTML=html;
+}
+
+window.setHookFilter=t=>{hookFilterType=t;renderHooks();};
+window.deleteUserHook=id=>{
+  if(!confirm('Hook verwijderen?'))return;
+  state.userHooks=(state.userHooks||[]).filter(h=>h.id!==id);
+  save();renderHooks();toast('Hook verwijderd');
+};
+
+window.openAddHook=function(){
+  document.getElementById('hk_id').value='';
+  document.getElementById('hk_text').value='';
+  document.getElementById('hk_type').value='Curiosity';
+  document.getElementById('hk_cat').value=firstCatKey();
+  document.getElementById('hookModalTitle').textContent='🪝 Nieuwe hook';
+  document.getElementById('saveHookBtn').textContent='Opslaan ✓';
+  document.getElementById('modalHook').classList.add('open');
+  setTimeout(()=>document.getElementById('hk_text').focus(),250);
+};
+
+window.openEditHook=function(id){
+  const h=(state.userHooks||[]).find(x=>x.id===id);if(!h)return;
+  document.getElementById('hk_id').value=id;
+  document.getElementById('hk_text').value=h.text||'';
+  document.getElementById('hk_type').value=h.type||'Curiosity';
+  document.getElementById('hk_cat').value=h.cat||firstCatKey();
+  document.getElementById('hookModalTitle').textContent='✏️ Hook bewerken';
+  document.getElementById('saveHookBtn').textContent='Opslaan ✓';
+  document.getElementById('modalHook').classList.add('open');
+  setTimeout(()=>document.getElementById('hk_text').focus(),250);
+};
+
+window.saveHook=function(){
+  const text=document.getElementById('hk_text').value.trim();
+  if(!text){toast('Vul de hook tekst in');return;}
+  const type=document.getElementById('hk_type').value;
+  const cat=document.getElementById('hk_cat').value||firstCatKey();
+  const existingId=document.getElementById('hk_id').value;
+  if(!state.userHooks)state.userHooks=[];
+  if(existingId){
+    const h=state.userHooks.find(x=>x.id===Number(existingId));
+    if(h){h.text=text;h.type=type;h.cat=cat;}
+    toast('✓ Hook bijgewerkt');
+  } else {
+    state.userHooks.push({id:Date.now(),text,type,cat,source:'manual'});
+    toast('🪝 Hook opgeslagen');
+  }
+  save();closeModal('modalHook');renderHooks();
+};
+
+window.copyHook=(el,text)=>{
+  navigator.clipboard.writeText(text).then(()=>{
+    const badge=el.querySelector('.copied-badge');badge.style.display='block';
+    setTimeout(()=>badge.style.display='none',1800);
+  }).catch(()=>toast('Copy: '+text.substring(0,30)+'…'));
+};
+
+// ─── ACTIONS ──────────────────────────────────────────────────────────────────
+window.setFilter       =k=>{filterCat=k;renderVault();};
+window.setInspoFilter  =k=>{filterInspo=k;renderInspo();};
+window.setStatusFilter =s=>{filterStatus=s;renderVault();};
+window.setSeriesEpFilter=(s,id)=>{seriesEpFilter=s;renderSeriesDetail(id);};
+
+window.setStatus=(id,s)=>{
+  const i=state.ideas.find(x=>x.id===id);if(!i)return;
+  i.status=s;if(s==="✅ Posted")state.stats.lastPostedAt=Date.now();
+  save();renderAll();if(viewingSeriesId)renderSeriesDetail(viewingSeriesId);
+  toast(s==="✅ Posted"?"🎉 Posted! Moved to archive.":"Status updated");
+};
+window.deleteIdea=id=>{if(!confirm('Delete?'))return;state.ideas=state.ideas.filter(x=>x.id!==id);save();renderAll();if(viewingSeriesId)renderSeriesDetail(viewingSeriesId);};
+window.deleteInspo=id=>{if(!confirm('Remove?'))return;deleteVideoFromIDB(id);state.inspo=state.inspo.filter(x=>x.id!==id);save();renderInspo();};
+window.unassignDay=id=>{const i=state.ideas.find(x=>x.id===id);if(i){i.day=null;save();renderAll();}};
+window.openLink=url=>{if(url)window.open(url,'_blank','noopener');};
+
+window.openDayPicker=id=>{
+  editingAssignId=id;const i=state.ideas.find(x=>x.id===id);
+  document.getElementById('dayPicker').innerHTML=DAYS.map(d=>`<button onclick="assignDay('${d.key}')" ${i&&i.day===d.key?'style="background:#ece8e0"':''}>
+    <span><b>${d.label}</b> <span style="color:#888;font-weight:400">· ${d.role}</span></span>
+    <span style="color:#aaa;font-size:12px">${state.ideas.filter(x=>x.day===d.key).length}</span>
+  </button>`).join('')+`<button class="none" onclick="assignDay(null)">Unassign</button>`;
+  document.getElementById('modalDay').classList.add('open');
+};
+window.assignDay=k=>{
+  const i=state.ideas.find(x=>x.id===editingAssignId);
+  if(i){i.day=k;save();renderAll();toast(k?`Assigned to ${DAYS.find(d=>d.key===k).label}`:'Unassigned');}
+  closeModal('modalDay');
+};
+
+// ─── ADD / EDIT IDEA ──────────────────────────────────────────────────────────
+window.openAddIdea=(preSeriesId)=>{
+  editingIdeaId=null;setMode('structured');clearIdeaForm();
+  populateSeries(preSeriesId||null);
+  document.getElementById('modalIdeaTitle').textContent='New idea 💡';
+  document.getElementById('saveIdeaBtn').textContent='Save idea ✓';
+  document.getElementById('modeSwitcher').style.display='flex';
+  document.getElementById('modalIdea').classList.add('open');
+  setTimeout(()=>document.getElementById('f_title').focus(),250);
+};
+window.openEditIdea=id=>{
+  const idea=state.ideas.find(x=>x.id===id);if(!idea)return;
+  editingIdeaId=id;setMode('structured');
+  document.getElementById('f_title').value =idea.title;
+  document.getElementById('f_hook').value  =idea.hook||'';
+  document.getElementById('f_notes').value =idea.notes||'';
+  document.getElementById('f_script').value=idea.script||'';
+  document.getElementById('f_cat').value   =idea.cat;
+  document.getElementById('f_plat').value  =idea.platform;
+  setFormat(idea.format||'camera');
+  setGoal(idea.goal||'inspire');
+  populateSeries(idea.seriesId||null);
+  document.getElementById('modalIdeaTitle').textContent='Edit idea ✏️';
+  document.getElementById('saveIdeaBtn').textContent='Update idea ✓';
+  document.getElementById('modeSwitcher').style.display='none';
+  document.getElementById('modalIdea').classList.add('open');
+  setTimeout(()=>document.getElementById('f_title').focus(),250);
+  // Load existing voice note if present
+  resetVoiceNote();
+  if(idea.voiceNoteKey){
+    getVoiceNote(idea.voiceNoteKey).then(url=>{
+      if(url){
+        vnBlobURL=url;
+        const player=document.getElementById('vnPlayer');
+        player.src=url;player.style.display='block';
+        const btn=document.getElementById('vnRecBtn');
+        btn.textContent='🔄 Opnieuw opnemen';
+        document.getElementById('vnStatus').textContent='Voice note aanwezig ✓';
+      }
+    });
+  }
+};
+function populateSeries(sel){
+  document.getElementById('f_series').innerHTML=`<option value="">— No series —</option>`+state.series.map(s=>`<option value="${s.id}" ${s.id===sel?'selected':''}>${esc(s.name)}</option>`).join('');
+}
+function clearIdeaForm(){
+  ['f_title','f_hook','f_notes','f_script','f_dump'].forEach(id=>{const e=document.getElementById(id);if(e)e.value='';});
+  document.getElementById('f_cat').value=firstCatKey();document.getElementById('f_plat').value='Both';
+  setFormat('camera');setGoal('inspire');setGenScript(false);
+  resetVoiceNote();
+}
+window.openAddInspo=()=>{
+  ['i_url','i_title','i_notes'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('i_cat').value=firstCatKey();document.getElementById('i_status').value='To recreate';
+  document.getElementById('i_video').value='';
+  document.getElementById('i_video_preview').style.display='none';
+  const pv=document.getElementById('i_url_preview');pv.style.display='none';pv.innerHTML='';
+  document.getElementById('modalInspo').classList.add('open');
+};
+window.closeModal=id=>document.getElementById(id).classList.remove('open');
+document.querySelectorAll('.modal-bg,.idmodal-bg').forEach(m=>m.addEventListener('click',e=>{if(e.target===m)m.classList.remove('open');}));
+
+window.saveIdea=async()=>{
+  const title=document.getElementById('f_title').value.trim();if(!title){toast('Add a title first');return;}
+  const serVal=document.getElementById('f_series').value,seriesId=serVal?parseInt(serVal):null;
+  if(editingIdeaId!==null){
+    const idea=state.ideas.find(x=>x.id===editingIdeaId);
+    if(idea){
+      idea.title=title;idea.hook=document.getElementById('f_hook').value.trim();idea.notes=document.getElementById('f_notes').value.trim();idea.script=document.getElementById('f_script').value.trim();idea.cat=document.getElementById('f_cat').value;idea.platform=document.getElementById('f_plat').value;idea.format=currentFormat;idea.goal=currentGoal;idea.seriesId=seriesId;
+      // Save voice note if a new recording was made
+      if(vnPendingBlob){
+        const key='vn_'+idea.id;
+        await storeVoiceNote(key,vnPendingBlob);
+        idea.voiceNoteKey=key;
+      }
+    }
+    editingIdeaId=null;save();renderAll();if(viewingSeriesId)renderSeriesDetail(viewingSeriesId);closeModal('modalIdea');toast('Updated ✓');
+  } else {
+    const newId=Date.now();
+    let voiceNoteKey=null;
+    if(vnPendingBlob){
+      voiceNoteKey='vn_'+newId;
+      await storeVoiceNote(voiceNoteKey,vnPendingBlob);
+    }
+    state.ideas.push({id:newId,title,hook:document.getElementById('f_hook').value.trim(),notes:document.getElementById('f_notes').value.trim(),script:document.getElementById('f_script').value.trim(),cat:document.getElementById('f_cat').value,platform:document.getElementById('f_plat').value,format:currentFormat,goal:currentGoal,seriesId,status:"💡 Idea",day:null,voiceNoteKey});
+    save();renderAll();if(viewingSeriesId)renderSeriesDetail(viewingSeriesId);closeModal('modalIdea');toast('Idea captured ✓');
+  }
+};
+window.onVideoFileSelected=function(input){
+  const file=input.files[0];if(!file)return;
+  const player=document.getElementById('i_video_player');
+  player.src=URL.createObjectURL(file);
+  document.getElementById('i_video_preview').style.display='block';
+  // Pre-fill title if empty
+  const titleEl=document.getElementById('i_title');
+  if(!titleEl.value)titleEl.value=file.name.replace(/\.[^.]+$/,'').replace(/[-_]/g,' ');
+};
+
+window.saveInspo=async()=>{
+  const url=document.getElementById('i_url').value.trim();
+  const videoFile=document.getElementById('i_video').files[0];
+  if(!url&&!videoFile){toast('Upload a video or paste a link first');return;}
+  const saveBtn=document.querySelector('#modalInspo .primary');
+  if(saveBtn){saveBtn.textContent='Saving…';saveBtn.disabled=true;}
+
+  const platform=url?detectPlatform(url):'upload';
+  const embedId=url?extractEmbedId(url,platform):null;
+  const id=Date.now();
+  let videoUrl=null;
+
+  if(videoFile){
+    // Store video file in IndexedDB — local, private, fast
+    try{
+      await storeVideoInIDB(id,videoFile);
+      videoUrl='idb:'+id; // marker that video lives in IndexedDB
+    }catch(e){console.warn('IDB store failed',e);}
+  } else if(url&&(platform==='tiktok'||platform==='youtube')){
+    // Try Cobalt for TikTok/YouTube (works reliably)
+    try{videoUrl=await fetchCobaltUrl(url);}catch(e){}
+  }
+
+  const item={id,url:url||'',videoUrl,title:document.getElementById('i_title').value.trim()||'Untitled inspo',notes:document.getElementById('i_notes').value.trim(),hook:'',script:'',cat:document.getElementById('i_cat').value,status:document.getElementById('i_status').value,platform,embedId};
+  state.inspo.push(item);
+  save();renderInspo();closeModal('modalInspo');
+  if(saveBtn){saveBtn.textContent='Save ✓';saveBtn.disabled=false;}
+  toast(videoUrl?'Saved 💎 — video plays inside app':'Saved 💎');
+};
+
+// ─── SERIES ───────────────────────────────────────────────────────────────────
+window.openAddSeries=()=>{['s_name','s_desc'].forEach(id=>document.getElementById(id).value='');document.getElementById('s_cat').value='';document.getElementById('modalSeries').classList.add('open');setTimeout(()=>document.getElementById('s_name').focus(),250);};
+window.saveSeries=()=>{const name=document.getElementById('s_name').value.trim();if(!name){toast('Give it a name');return;}state.series.push({id:Date.now(),name,cat:document.getElementById('s_cat').value||null,desc:document.getElementById('s_desc').value.trim()});save();renderAll();closeModal('modalSeries');toast('Series created 🎬');};
+window.deleteSeries=id=>{if(!confirm('Delete series? Ideas stay but lose the link.'))return;state.series=state.series.filter(x=>x.id!==id);state.ideas.forEach(i=>{if(i.seriesId===id)i.seriesId=null;});save();renderAll();};
+window.openSeriesDetail=id=>{viewingSeriesId=id;seriesEpFilter=null;document.getElementById('seriesListView').style.display='none';document.getElementById('seriesDetailView').style.display='block';document.getElementById('seriesAddEpBtn').onclick=()=>openAddIdea(id);renderSeriesDetail(id);};
+window.closeSeriesDetail=()=>{viewingSeriesId=null;seriesEpFilter=null;document.getElementById('seriesListView').style.display='block';document.getElementById('seriesDetailView').style.display='none';};
+
+// ─── MODE / FORMAT / GOAL ─────────────────────────────────────────────────────
+window.setMode=mode=>{
+  currentMode=mode;const d=mode==='dump';
+  document.getElementById('dumpSection').style.display=d?'block':'none';
+  document.getElementById('structuredSection').style.display=d?'none':'block';
+  document.getElementById('btnModeDump').classList.toggle('active',d);
+  document.getElementById('btnModeStructured').classList.toggle('active',!d);
+  if(d)setTimeout(()=>document.getElementById('f_dump').focus(),100);
+};
+window.setFormat=f=>{currentFormat=f;['Camera','Voice','Broll'].forEach(x=>{const el=document.getElementById('fmt'+x);if(el)el.classList.toggle('active',f===(x==='Camera'?'camera':x==='Voice'?'voiceover':'broll'));});};
+window.setGoal=g=>{currentGoal=g;['Inspire','Educate','Entertain'].forEach(x=>{const el=document.getElementById('goal'+x);if(el)el.classList.toggle('active',g===x.toLowerCase());});};
+window.setGenScript=v=>{genScript=v;document.getElementById('genYes').classList.toggle('active',v);document.getElementById('genNo').classList.toggle('active',!v);};
+
+// ─── API KEY MANAGEMENT ───────────────────────────────────────────────────────
+const API_KEY_STORE='contentHub_claudeKey';
+function getApiKey(){return localStorage.getItem(API_KEY_STORE)||'';}
+window.saveApiKey=()=>{
+  const val=document.getElementById('apiKeyInput').value.trim();
+  const errEl=document.getElementById('aiKeyError');
+  errEl.style.display='none';
+  if(!val){errEl.textContent='Paste your API key first.';errEl.style.display='block';return;}
+  if(!val.startsWith('sk-')){errEl.textContent='That doesn\'t look like a valid key (should start with sk-).';errEl.style.display='block';return;}
+  localStorage.setItem(API_KEY_STORE,val);
+  updateKeyStatus();
+  toast('✓ Key saved — AI is now powered by Claude');
+};
+function updateKeyStatus(){
+  const key=getApiKey();
+  const el=document.getElementById('aiKeyStatus');
+  if(!el)return;
+  el.style.display=key?'inline-block':'none';
+  const inp=document.getElementById('apiKeyInput');
+  if(inp&&key)inp.placeholder='Key saved ✓';
+}
+
+async function callClaude(prompt){
+  const key=getApiKey();
+  if(!key)throw new Error('No API key');
+  const res=await fetch('https://api.anthropic.com/v1/messages',{
+    method:'POST',
+    headers:{
+      'Content-Type':'application/json',
+      'x-api-key':key,
+      'anthropic-version':'2023-06-01',
+      'anthropic-dangerous-direct-browser-calls':'true'
+    },
+    body:JSON.stringify({
+      model:'claude-haiku-4-5-20251001',
+      max_tokens:1200,
+      messages:[{role:'user',content:prompt}]
+    })
+  });
+  if(!res.ok){
+    const err=await res.json().catch(()=>({}));
+    throw new Error(err.error?.message||`API error ${res.status}`);
+  }
+  const data=await res.json();
+  return data.content[0].text;
+}
+
+// ─── AI BRAIN DUMP ────────────────────────────────────────────────────────────
+window.aiProcess=async()=>{
+  const text=document.getElementById('f_dump').value.trim();if(!text){toast('Write something first!');return;}
+  const btn=document.getElementById('aiBtn'),thinking=document.getElementById('aiThinking');
+  btn.style.display='none';thinking.style.display='block';
+
+  const key=getApiKey();
+  if(key){
+    // ── REAL CLAUDE PATH ──
+    try{
+      const prompt=buildBrainDumpPrompt(text);
+      const raw=await callClaude(prompt);
+      // Parse JSON from response
+      const jsonMatch=raw.match(/\{[\s\S]*\}/);
+      if(!jsonMatch)throw new Error('No JSON in response');
+      const r=JSON.parse(jsonMatch[0]);
+
+      document.getElementById('f_title').value=r.title||aiSmartTitle(text,r.category||'life');
+      document.getElementById('f_hook').value=r.hook||'';
+      document.getElementById('f_cat').value=r.category||aiCategorize(text);
+      if(r.goal)setGoal(r.goal);
+      if(r.format)setFormat(r.format==='voiceover'?'voiceover':r.format==='broll'?'broll':'camera');
+
+      if(genScript){
+        // Generate Script ON → ask Claude to write a proper script
+        const scriptPrompt=buildScriptPrompt(r.title||text,r.hook||'',r.category||'life',text);
+        const scriptRaw=await callClaude(scriptPrompt);
+        document.getElementById('f_script').value=scriptRaw.trim();
+        document.getElementById('f_notes').value=r.notes||text;
+      } else {
+        document.getElementById('f_script').value=r.script||'';
+        document.getElementById('f_notes').value=r.notes||'';
+      }
+
+      const detectedDay=detectDay(text);
+      if(detectedDay){window._pendingDay=detectedDay;}
+      btn.style.display='';thinking.style.display='none';
+      setMode('structured');
+      const cat=r.category||'life';
+      let msg=`✨ ${CATS[cat]?.emoji||'✨'} ${CATS[cat]?.label||cat} — Claude analysed`;
+      if(detectedDay)msg+=` · 📅 ${DAYS.find(d=>d.key===detectedDay)?.label} detected`;
+      toast(msg);
+    }catch(e){
+      btn.style.display='';thinking.style.display='none';
+      toast('⚠️ Claude error: '+e.message.substring(0,60));
+      console.error(e);
+    }
+  } else {
+    // ── FALLBACK HEURISTIC PATH ──
+    setTimeout(()=>{
+      const cat=aiCategorize(text);
+      const title=aiSmartTitle(text,cat);
+      const detectedDay=detectDay(text);
+      const {hook,scriptText,notesText,mode}=aiStructureContent(text,cat);
+      document.getElementById('f_title').value=title;
+      document.getElementById('f_hook').value=hook;
+      document.getElementById('f_cat').value=cat;
+      if(genScript){
+        document.getElementById('f_script').value=generateScript(title,hook,cat,text);
+        document.getElementById('f_notes').value=text;
+      } else {
+        document.getElementById('f_script').value=scriptText;
+        document.getElementById('f_notes').value=notesText;
+      }
+      if(detectedDay){window._pendingDay=detectedDay;}
+      btn.style.display='';thinking.style.display='none';
+      setMode('structured');
+      const _catInfo=CATS[cat]||Object.values(CATS)[0];
+      let msg=`✨ ${_catInfo.emoji} ${_catInfo.label}`;
+      if(detectedDay)msg+=` · 📅 ${DAYS.find(d=>d.key===detectedDay).label} detected`;
+      if(genScript)msg+=' · Script generated';else if(mode==='script')msg+=' · Script detected';else if(mode==='mixed')msg+=' · Split';else msg+=' · Notes saved';
+      msg+=' (connect Claude API for smarter results)';
+      toast(msg);
+    },700);
+  }
+};
+
+function buildBrainDumpPrompt(text){
+  return `You are a content strategy assistant for Yasmine, a Dutch woman living in Dubai who creates short-form video content (Instagram Reels + TikTok). She is a woman in her late 20s/early 30s — confident, real, feminine, building her life in public.
+
+Her 5 content pillars:
+- "life" = Dubai Life (expat life, food, costs, culture, lifestyle)
+- "hustle" = The Hustle (career, business, content creation, entrepreneurship, productivity, ADHD at work)
+- "soul" = Being a Woman (relationships, dating, femininity, self-worth, healing, boundaries, faith, ADHD in life)
+- "beauty" = Beauty & Fashion (skincare, makeup, outfits, style in Dubai)
+- "creative" = Creative (writing, art, creative process)
+
+Given Yasmine's raw brain dump below, return ONLY a valid JSON object (no explanation, no markdown, just the JSON):
+
+{
+  "title": "Short punchy content headline, 4-7 words max, no filler words, no starting with 'I', feels like a real content title",
+  "hook": "The single most compelling opening line that would stop someone mid-scroll. 1-2 sentences. Conversational. In her voice.",
+  "category": "one of exactly: life, hustle, soul, beauty, creative",
+  "goal": "one of exactly: inspire, educate, entertain",
+  "format": "one of exactly: camera, voiceover, broll",
+  "script": "The conversational/spoken parts of her input, cleaned up and readable but keeping her voice and words. If the input is clearly notes/fragments, leave this empty string.",
+  "notes": "The rough fragments, ideas, keywords, things not ready to say on camera. If the whole input is already script-ready, leave this empty string.",
+  "scriptDetected": true or false
+}
+
+Brain dump:
+${text}`;
+}
+
+function buildScriptPrompt(title,hook,cat,originalText){
+  const catContext={life:'Dubai expat life, honest and relatable',hustle:'career and hustle, raw and motivating',soul:'being a woman, emotional and grounded',beauty:'beauty and fashion, fun and real',creative:'creative process, thoughtful'};
+  return `Write a short-form video script for Yasmine, a Dutch woman in Dubai. Topic: "${title}". Content pillar: ${catContext[cat]||cat}.
+
+Her voice: conversational, confident, real, not corporate, slightly Dutch directness. Like she's talking to a friend on camera.
+
+The script must have:
+- HOOK (3 seconds): ${hook}
+- MAIN (30-60 seconds): 3-4 natural talking points based on this content: ${originalText}
+- OUTRO (5 seconds): a natural CTA that fits her personality
+
+Rules:
+- Write in full sentences as she would actually say them out loud
+- No "Point 1, Point 2" format — natural conversational flow
+- Keep her actual words and phrases where possible
+- Short punchy sentences. Real. Not polished.
+- Maximum 200 words total
+
+Return ONLY the script text, formatted with [HOOK], [MAIN], [OUTRO] section labels.`;
+}
+
+window._pendingDay=null;
+const _origSave=window.saveIdea;
+window.saveIdea=()=>{_origSave();if(window._pendingDay&&state.ideas.length>0){const last=state.ideas[state.ideas.length-1];if(last&&!last.day){last.day=window._pendingDay;window._pendingDay=null;save();renderAll();}}};
+
+function detectDay(text){
+  const t=text.toLowerCase();
+  const map={monday:'mon',tuesday:'tue',wednesday:'wed',thursday:'thu',friday:'fri',saturday:'sat',sunday:'sun',mon:'mon',tue:'tue',wed:'wed',thu:'thu',fri:'fri',sat:'sat',sun:'sun',maandag:'mon',dinsdag:'tue',woensdag:'wed',donderdag:'thu',vrijdag:'fri',zaterdag:'sat',zondag:'sun'};
+  for(const[w,k]of Object.entries(map)){if(t.includes(w))return k;}
+  return null;
+}
+
+// ─── SMART TITLE GENERATION ───────────────────────────────────────────────────
+function aiSmartTitle(text,cat){
+  const t=text.toLowerCase();
+
+  // Strip meta-preamble from the raw text
+  let clean=text.trim()
+    .replace(/^(i want to (make|create|do|share|talk about|post) (a )?(video|reel|tiktok|post|piece of content|story) (about|on|of|around)\s*)/i,'')
+    .replace(/^(i('m| am) (thinking|planning) (of|about) (making )?(a )?(video|reel|content|post) (about|on)\s*)/i,'')
+    .replace(/^(i have (an idea|a video idea)[:\-]?\s*(about|for|on)?\s*)/i,'')
+    .replace(/^((video|reel|tiktok|content) (idea)?[:\-]?\s*)/i,'')
+    .replace(/^(idea[:\-]?\s*)/i,'')
+    .replace(/^((on |this )?(monday|tuesday|wednesday|thursday|friday|saturday|sunday|mon|tue|wed|thu|fri|sat|sun)[,:\s]+)/i,'')
+    .trim();
+
+  // Pattern-based intelligent headline generation
+  // Dubai move/life stories
+  if(/(moved?|moving)\s+to\s+dubai/.test(t)){
+    if(/no clue|didn't know|had no idea|nervous|scared|terrified/.test(t)) return 'Moving to Dubai With No Idea What I Was Doing';
+    if(/alone|by myself|on my own/.test(t)) return 'What It\'s Really Like Moving to Dubai Alone';
+    if(/changed|transform|different|never expected/.test(t)) return 'Moving to Dubai Changed My Life Overnight';
+    return 'What Nobody Tells You About Moving to Dubai';
+  }
+  if(/first (year|month|week|day).*dubai|dubai.*first (year|month|week|day)/.test(t)){
+    const period=t.match(/first (year|month|week|day)/)?.[1]||'year';
+    return `My First ${period.charAt(0).toUpperCase()+period.slice(1)} in Dubai: The Honest Version`;
+  }
+  if(/dubai.*(expensive|cheap|cost of living|grocery|rent|salary)/.test(t)||(/(expensive|cheap|cost of living|grocery|rent)/.test(t)&&/dubai/.test(t))){
+    return 'The Real Cost of Living in Dubai Nobody Posts About';
+  }
+  if(/day in (my|the) life|24 hours|grwm|get ready with me/.test(t)){
+    return 'A Day in My Life in Dubai — No Filter';
+  }
+
+  // Personal transformation / decision stories
+  if(/when i (decided|chose|left|quit|walked away|said no)/.test(t)){
+    const verb=t.match(/when i (decided|chose|left|quit|walked away|said no)/)?.[1]||'decided';
+    return `The Day I ${verb.charAt(0).toUpperCase()+verb.slice(1)} to Change Everything`;
+  }
+  if(/i used to (think|believe|feel|be)/.test(t)) return 'How My Mindset Completely Shifted';
+  if(/when i was (younger|a kid|growing up|in school)/.test(t)) return 'What My Younger Self Needed to Hear';
+  if(/i never (thought|imagined|expected)/.test(t)) return 'I Never Expected My Life to Look Like This';
+  if(/everything changed when/.test(t)) return 'The Moment Everything Changed for Me';
+
+  // Unpopular opinions / hot takes
+  if(/(unpopular opinion|hot take|controversial|change my mind|not gonna lie|ngl,)/.test(t)){
+    const coreTopic=clean.replace(/^(unpopular opinion[:\-\s]*|hot take[:\-\s]*|ngl[,:\s]*|not gonna lie[,:\s]*)/i,'').split(/[.!?\n]/)[0].trim();
+    const shortened=coreTopic.length>50?coreTopic.substring(0,50)+'…':coreTopic;
+    return 'Unpopular Opinion: '+toTitleCase(shortened);
+  }
+  if(/nobody talks about|nobody tells you|nobody warns you/.test(t)){
+    const after=t.split(/nobody (talks about|tells you|warns you)/)[1]||'';
+    const topic=after.split(/[.!?\n]/)[0].replace(/^[\s,]+/,'').trim();
+    if(topic.length>4&&topic.length<60) return 'Nobody Talks About '+toTitleCase(topic);
+    return cat==='life'?'The Part of Dubai Life Nobody Talks About':'The Thing Nobody in This Space Is Saying';
+  }
+
+  // ADHD content
+  if(/adhd/.test(t)){
+    if(/dating|relationship/.test(t)) return 'Dating With ADHD: My Honest Experience';
+    if(/work|job|career|business/.test(t)) return 'How I Make ADHD Work for Me in Business';
+    if(/content|create|creative/.test(t)) return 'My ADHD Brain Is Actually My Content Superpower';
+    return 'What Living With ADHD Actually Feels Like';
+  }
+
+  // Relationships / dating
+  if(/dating|situationship|talking stage|heartbreak|break.?up/.test(t)){
+    if(/dubai/.test(t)) return 'Dating in Dubai: What I Wish Someone Told Me';
+    if(/heartbreak|break.?up/.test(t)) return 'What Heartbreak Taught Me About Myself';
+    return 'The Dating Conversation We Need to Have';
+  }
+
+  // Healing / mental health / burnout
+  if(/burnout|therapy|healing|mental health|anxiety|depress/.test(t)){
+    if(/burnout/.test(t)) return 'Burnout Hit Me Hard — Here\'s What I Learned';
+    if(/therapy/.test(t)) return 'What Therapy Actually Did for Me';
+    return 'The Inner Work Nobody Talks About';
+  }
+
+  // Boundaries / self-worth
+  if(/boundary|boundaries|self.?worth|self.?love|people pleasing/.test(t)){
+    if(/set a boundary|setting boundaries/.test(t)) return 'The Boundary I Set That Changed Everything';
+    if(/people pleasing|people-pleasing/.test(t)) return 'I Was a People Pleaser — Here\'s How I Stopped';
+    return 'Learning to Put Myself First';
+  }
+
+  // Faith / spirituality
+  if(/faith|god|pray|spiritual|quran|allah/.test(t)) return 'How My Faith Keeps Me Grounded';
+
+  // Beauty / skincare
+  if(/skincare|skin care|routine|serum|moisturis|spf|sunscreen|glow/.test(t)){
+    if(/dubai|heat|sun|humid/.test(t)) return 'The Skincare Routine That Survived Dubai Heat';
+    return 'My Honest Skincare Routine — What Actually Works';
+  }
+  if(/makeup|foundation|concealer|contour|blush|lipstick|glam/.test(t)) return 'My Honest Makeup Routine — No Filter';
+  if(/outfit|ootd|style|fashion|what i wore|get dressed/.test(t)) return 'My Go-To Outfits Right Now';
+
+  // Hustle / career
+  if(/job hunt|job search|interview|linkedin/.test(t)){
+    if(/dubai/.test(t)) return 'Job Hunting in Dubai: The Real Experience';
+    return 'What Job Hunting Actually Looks Like in 2025';
+  }
+  if(/freelance|side hustle|business idea|startup|building/.test(t)) return 'Building Something From Scratch — The Real Version';
+  if(/(morning|evening|night) routine/.test(t)) return 'My Actual Routine — The Version That Works';
+  if(/productivity|focus|discipline/.test(t)) return 'The Productivity Habit That Changed My Output';
+
+  // Number-based tips / lists
+  const listMatch=t.match(/(\d+)\s+(ways?|tips?|things?|steps?|reasons?|mistakes?)/);
+  if(listMatch){const firstLine=clean.split(/[\n.!?]/)[0].trim();return toTitleCase(firstLine.substring(0,65));}
+
+  // How-to content
+  if(/how to/.test(t)){const firstLine=clean.split(/[\n.!?]/)[0].trim();return toTitleCase(firstLine.substring(0,65));}
+
+  // Fallback: intelligently shorten + clean up first sentence
+  const firstSentence=clean.split(/[.!?\n]/)[0].trim();
+  let title=firstSentence
+    .replace(/^(so |okay so |okay, |well |ok |oh |and |basically |literally |like |honestly |actually )/i,'')
+    .replace(/^(i was (just |kind of |sort of )?)/i,'')
+    .trim();
+  if(title.length>65) title=title.substring(0,62)+'…';
+  return toTitleCase(title)||'Untitled Idea';
+}
+
+function toTitleCase(str){
+  const small=new Set(['a','an','the','and','but','or','for','nor','on','at','to','by','in','of','up','as','is','it','its']);
+  return (str||'').trim().split(' ').map((w,i)=>{
+    const lw=w.toLowerCase();
+    return(i===0||!small.has(lw))?lw.charAt(0).toUpperCase()+lw.slice(1):lw;
+  }).join(' ');
+}
+
+// ─── SMART CONTENT STRUCTURING ────────────────────────────────────────────────
+function aiStructureContent(text,cat){
+  const lines=text.split('\n').map(l=>l.trim()).filter(Boolean);
+
+  // Score each line: is it spoken/script content or raw notes?
+  function scoreLineAsScript(line){
+    const l=line.toLowerCase();
+    let score=0;
+    // Strong notes signals → subtract
+    if(/^[-•*–—]/.test(line)) score-=3;                   // bullet point
+    if(/^(hook|title|notes?|script|b.?roll|idea|outline|tags?|caption)[:\s]/i.test(l)) score-=3; // label
+    if(line.split(/\s+/).length<=3) score-=2;              // very short fragment
+    if(/^\w+[,:]$/.test(line)) score-=2;                  // single keyword label
+    // Strong script signals → add
+    if(/^(so|okay|ok|hey|alright|right|now|look|listen|here'?s?|let me|and|but then|the thing)/i.test(l)) score+=3;
+    if(/^i (was|am|have|had|did|decided|moved|started|felt|realized|think|want|know|used to|never)/i.test(l)) score+=3;
+    if(/^(when|after|before|because|the moment|what happened|that's when)/i.test(l)) score+=2;
+    if(/\b(you know|here's the thing|honestly|basically|so basically|real talk|the truth is)\b/.test(l)) score+=2;
+    if(line.split(/\s+/).length>=10) score+=2;             // long flowing sentence
+    if(line.split(/\s+/).length>=6) score+=1;              // medium sentence
+    return score;
+  }
+
+  const scores=lines.map(scoreLineAsScript);
+  const scriptLines=[],notesLines=[];
+  lines.forEach((line,i)=>{
+    if(scores[i]>=0) scriptLines.push(line);
+    else notesLines.push(line);
+  });
+
+  const scriptRatio=lines.length>0?scriptLines.length/lines.length:0;
+
+  // Extract hook from actual input first, fall back to template
+  const hook=extractHookFromText(text,cat);
+
+  let scriptText='',notesText='',mode='notes';
+  if(scriptRatio>=0.6){
+    // Mostly script → clean it up slightly and put in script
+    scriptText=cleanupScript(text);
+    notesText='';
+    mode='script';
+  } else if(scriptRatio<=0.25){
+    // Mostly notes/fragmented
+    notesText=text;
+    scriptText='';
+    mode='notes';
+  } else {
+    // Mixed → split intelligently
+    scriptText=scriptLines.join('\n');
+    notesText=notesLines.join('\n');
+    mode='mixed';
+  }
+
+  return{hook,scriptText,notesText,mode};
+}
+
+function cleanupScript(text){
+  // Light cleanup: remove obvious meta-labels, trim lines, keep voice intact
+  return text.split('\n')
+    .map(l=>l.trim())
+    .filter(l=>l.length>0)
+    .filter(l=>!/^(hook|title|script|notes?|b.?roll|idea|outline|tags?)[:\s]*$/i.test(l))
+    .join('\n');
+}
+
+function extractHookFromText(text,cat){
+  // Try to pull first engaging sentence from the actual input
+  const sentences=text.replace(/\n+/g,' ').split(/(?<=[.!?])\s+/).map(s=>s.trim()).filter(s=>s.length>10);
+  if(sentences.length>0){
+    const first=sentences[0];
+    const words=first.split(/\s+/);
+    // Good hook: 5-25 words, not a meta-phrase
+    if(words.length>=5&&words.length<=30){
+      const stripped=first.replace(/^(i want to (make|share|talk about)|this is (going to be|a) (video|reel)|i('m| am) (thinking|planning))[^,.]*/i,'').trim();
+      if(stripped.length>10){
+        return stripped.charAt(0).toUpperCase()+stripped.slice(1).replace(/\.$/,'')+'...';
+      }
+    }
+    // Second sentence might be the real hook
+    if(sentences.length>1){
+      const second=sentences[1];const sw=second.split(/\s+/).length;
+      if(sw>=5&&sw<=25) return second.replace(/\.$/,'')+'...';
+    }
+  }
+  // Fallback to category template
+  return aiGenerateHook(cat);
+}
+
+function generateScript(title,hook,cat,rawText){
+  const ctas={life:"Follow for more honest Dubai content.",hustle:"Save this if you needed to hear it.",soul:"Drop a ❤️ if this resonated with you.",beauty:"Link in bio for more looks.",creative:"Let me know your thoughts in the comments."};
+  // Pull actual sentences from the raw input for the body rather than blank placeholders
+  let bodyLines='';
+  if(rawText){
+    const sentences=rawText.split(/[.!?\n]+/).map(s=>s.trim()).filter(s=>s.length>8&&s.split(' ').length>3);
+    const picked=sentences.slice(0,4);
+    bodyLines=picked.length>0?picked.join('\n\n'):`Okay so here's the thing about ${title.toLowerCase()}...`;
+  } else {
+    bodyLines=`Okay so here's the thing about ${title.toLowerCase()}...`;
+  }
+  return `[HOOK — first 3 seconds]\n${hook}\n\n[MAIN — 30 to 60 seconds]\n${bodyLines}\n\n[OUTRO]\n${ctas[cat]||'Follow for more content like this.'}`;
+}
+
+function aiCategorize(text){
+  const t=text.toLowerCase(),scores={life:0,hustle:0,soul:0,beauty:0,creative:0};
+  const kw={
+    life:   ['dubai','expat','living abroad','grocery','food','eat','restaurant','café','cafe','apartment','flat','rent','brunch','mall','beach','desert','lifestyle','expensive','cheap','cost','weather','heat','supermarket','culture','move','moved','moving','neighbour','neighbourhood','community'],
+    hustle: ['job','work','career','hustle','business','freelance','money','earn','salary','income','startup','build','entrepreneur','interview','linkedin','network','office','corporate','discipline','routine','productivity','clients','brand','content creator','posting','growing'],
+    soul:   ['feel','feeling','emotion','thought','opinion','mindset','therapy','burnout','journaling','poetry','reflection','boundary','relationship','dating','faith','healing','self-worth','femininity','adhd','alone','lonely','love','heartbreak','breakup','confidence','insecurity','anxiety','mental','woman','feminine','boundaries','people pleasing','self love'],
+    beauty: ['makeup','skincare','skin care','beauty','hair','nails','outfit','style','fashion','self-care','glow','foundation','lipstick','look','brow','lash','serum','moisturis','routine','spf','sunscreen','contour','blush','mascara','toner'],
+    creative:['creative','art','write','writing','poem','story','design','photo','photography','music','dance','poetry','journal','shoot','edit','aesthetic'],
+  };
+  for(const[cat,words]of Object.entries(kw))for(const w of words)if(t.includes(w))scores[cat]+=(w.includes(' ')?3:1);
+  const best=Object.entries(scores).reduce((a,b)=>b[1]>a[1]?b:a)[0];
+  // If best cat still exists in CATS, use it; otherwise fall back to first available
+  return CATS[best]?best:firstCatKey();
+}
+
+function aiGenerateHook(cat){
+  const h={
+    life:   ["I moved to Dubai and nobody warned me about this.","Everyone glamourises Dubai life. Here's the honest version.","This is the part about living in Dubai nobody talks about."],
+    hustle: ["Nobody talks about the unglamorous side of building something.","I'm figuring this out in real time — and you're coming with me.","Real talk: the version no one is showing you."],
+    soul:   ["Hot take that might make you uncomfortable.","My ADHD brain figured something out and I need to share it.","This is what I think about at 2am."],
+    beauty: ["Get ready with me — honest version, no filter.","The routine that actually worked for my skin in this heat.","I finally found what works and I need to tell you."],
+    creative:["I made something and I need you to see it.","This idea has been living in my head for months."],
+  };
+  const opts=h[cat]||h.life;return opts[Math.floor(Math.random()*opts.length)];
+}
+
+// ─── WEEK / INSPO ─────────────────────────────────────────────────────────────
+function renderWeek(){
+  const box=document.getElementById('weekPlanner'),today=todayKey();
+  box.innerHTML=DAYS.map(d=>{
+    const mine=state.ideas.filter(i=>i.day===d.key),isToday=d.key===today;
+    return `<div class="day-col" style="${isToday?'outline:3px solid #1a1a2e;outline-offset:-1px':''}">
+      <div class="day-head"><div class="day-name"><div class="day-chip ${d.cls}">${d.label}</div><div class="role">${d.role}</div></div><div class="count">${mine.length}</div></div>
+      ${mine.length===0?`<div class="empty">No ideas assigned yet</div>`:mine.map(i=>`<div class="mini-idea border-${i.cat}" onclick="openEditIdea(${i.id})"><div class="t">${esc(i.title)}</div><span class="tiny-tag cat-${i.cat}">${(CATS[i.cat]||Object.values(CATS)[0]).emoji}</span><button class="remove" onclick="event.stopPropagation();unassignDay(${i.id})">×</button></div>`).join('')}
+    </div>`;
+  }).join('');
+}
+function renderInspo(){
+  const fEl=document.getElementById('inspoFilters');
+  let h=`<button class="pill ${!filterInspo?'active':''}" onclick="setInspoFilter(null)">All (${state.inspo.length})</button>`;
+  for(const[k,c]of Object.entries(CATS)){const n=state.inspo.filter(i=>i.cat===k).length;if(n>0)h+=`<button class="pill ${filterInspo===k?'active':''}" onclick="setInspoFilter('${k}')" style="${filterInspo===k?`background:${c.color};color:#fff`:`background:${c.light};color:#444`}">${c.emoji} ${c.label} (${n})</button>`;}
+  fEl.innerHTML=h;
+  const list=filterInspo?state.inspo.filter(i=>i.cat===filterInspo):state.inspo;
+  const box=document.getElementById('inspoList'),empty=document.getElementById('inspoEmpty');
+  if(list.length===0){box.innerHTML='';empty.style.display='block';return;}
+  empty.style.display='none';
+  box.innerHTML=list.map(i=>inspoCardHTML(i)).join('');
+}
+
+function inspoCardHTML(i){
+  const c=CATS[i.cat]||CATS[firstCatKey()]||Object.values(CATS)[0];
+  const platform=i.platform||detectPlatform(i.url||'');
+  const embedId=i.embedId||extractEmbedId(i.url||'',platform);
+  const platIcon={youtube:'▶️',tiktok:'🎵',instagram:'📸',other:'🔗'}[platform]||'🔗';
+  // YouTube thumbnail available for free
+  const ytThumb=platform==='youtube'&&embedId?`<img src="https://img.youtube.com/vi/${embedId}/mqdefault.jpg" alt="" loading="lazy">`:'';
+  const videoReady=!!i.videoUrl;
+  const thumb=ytThumb||`<span class="plat-icon">${platIcon}</span><span class="plat-lbl">${platform}</span>`;
+  return `<div class="inspo-card border-${i.cat}" onclick="openInspoDetail(${i.id})">
+    <button class="inspo-del-btn" onclick="event.stopPropagation();deleteInspo(${i.id})">×</button>
+    <div class="inspo-thumb">
+      ${thumb}
+      ${videoReady?`<span class="hook-badge" style="background:rgba(46,196,182,.9)">▶ Video</span>`:''}
+      ${i.hook&&!videoReady?`<span class="hook-badge">🪝 Hook</span>`:''}
+    </div>
+    <div class="inspo-card-body">
+      <div class="inspo-card-title">${esc(i.title||'Untitled')}</div>
+      <span class="tag cat-${i.cat}" style="font-size:10px">${c.emoji} ${c.label}</span>
+    </div>
+  </div>`;
+}
+
+// ─── VOICE NOTES ──────────────────────────────────────────────────────────────
+let vnMediaRecorder=null,vnAudioChunks=[],vnBlobURL=null,vnPendingBlob=null,vnRecognition=null,vnTranscript='',vnTimerInterval=null,vnSeconds=0;
+
+function openVoiceNoteIDB(){
+  return new Promise((res,rej)=>{
+    const req=indexedDB.open('contentHubVoiceNotes',1);
+    req.onupgradeneeded=e=>e.target.result.createObjectStore('notes');
+    req.onsuccess=e=>res(e.target.result);
+    req.onerror=()=>rej(req.error);
+  });
+}
+async function storeVoiceNote(key,blob){
+  const db=await openVoiceNoteIDB();
+  return new Promise((res,rej)=>{
+    const tx=db.transaction('notes','readwrite');
+    tx.objectStore('notes').put(blob,key);
+    tx.oncomplete=()=>res();
+    tx.onerror=()=>rej(tx.error);
+  });
+}
+async function getVoiceNote(key){
+  try{
+    const db=await openVoiceNoteIDB();
+    return new Promise(res=>{
+      const tx=db.transaction('notes','readonly');
+      const req=tx.objectStore('notes').get(key);
+      req.onsuccess=()=>res(req.result?URL.createObjectURL(req.result):null);
+      req.onerror=()=>res(null);
+    });
+  }catch{return null;}
+}
+
+window.toggleVoiceRecording=function(){
+  if(vnMediaRecorder&&vnMediaRecorder.state==='recording') stopVoiceRec();
+  else startVoiceRec();
+};
+
+async function startVoiceRec(){
+  try{
+    const stream=await navigator.mediaDevices.getUserMedia({audio:true});
+    vnAudioChunks=[];vnTranscript='';vnPendingBlob=null;
+    // Pick the best supported MIME type
+    const vnMime=['audio/webm;codecs=opus','audio/webm','audio/ogg;codecs=opus','audio/mp4',''].find(t=>t===''||MediaRecorder.isTypeSupported(t));
+    vnMediaRecorder=vnMime?new MediaRecorder(stream,{mimeType:vnMime}):new MediaRecorder(stream);
+    const actualMime=vnMediaRecorder.mimeType||'audio/webm';
+    vnMediaRecorder.ondataavailable=e=>{if(e.data.size>0)vnAudioChunks.push(e.data);};
+    vnMediaRecorder.onstop=()=>{
+      stream.getTracks().forEach(t=>t.stop());
+      const blob=new Blob(vnAudioChunks,{type:actualMime});
+      vnPendingBlob=blob;
+      if(vnBlobURL)URL.revokeObjectURL(vnBlobURL);
+      vnBlobURL=URL.createObjectURL(blob);
+      const player=document.getElementById('vnPlayer');
+      player.src=vnBlobURL;player.style.display='block';
+      const btn=document.getElementById('vnRecBtn');
+      btn.textContent='🔄 Opnieuw opnemen';btn.classList.remove('vn-rec-active');
+      document.getElementById('vnStatus').textContent='Opgenomen ✓ — speel af hieronder';
+      // Wait briefly for recognition to fire its final words, then paste into notes
+      setTimeout(()=>{
+        if(vnTranscript){
+          const box=document.getElementById('vnTranscriptBox');
+          box.style.display='block';box.textContent='🗣️ '+vnTranscript;
+          const notesEl=document.getElementById('f_notes');
+          const dumpEl=document.getElementById('f_dump');
+          if(currentMode==='dump'&&dumpEl)dumpEl.value=vnTranscript;
+          else if(notesEl)notesEl.value=vnTranscript;
+        }
+      },400);
+    };
+    vnMediaRecorder.start();
+    const btn=document.getElementById('vnRecBtn');
+    btn.textContent='⏹ Stop';btn.classList.add('vn-rec-active');
+    vnSeconds=0;
+    const statusEl=document.getElementById('vnStatus');
+    statusEl.textContent='🔴 0:00';
+    vnTimerInterval=setInterval(()=>{
+      vnSeconds++;
+      const m=Math.floor(vnSeconds/60),s=vnSeconds%60;
+      statusEl.textContent='🔴 '+m+':'+(s<10?'0':'')+s;
+    },1000);
+    // Web Speech API — gratis, geen key nodig, werkt in Chrome
+    const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+    if(SR){
+      vnRecognition=new SR();
+      vnRecognition.continuous=true;vnRecognition.interimResults=true;
+      vnRecognition.lang='en-US';
+      vnRecognition.onresult=e=>{
+        let interim='',final='';
+        for(let i=e.resultIndex;i<e.results.length;i++){
+          if(e.results[i].isFinal)final+=e.results[i][0].transcript+' ';
+          else interim+=e.results[i][0].transcript;
+        }
+        vnTranscript=(vnTranscript+final).trim();
+        const liveText=vnTranscript+(interim?' '+interim:'');
+        const box=document.getElementById('vnTranscriptBox');
+        box.style.display='block';
+        box.textContent='🗣️ '+liveText;
+        // Paste live into notes field (overwrite so it stays in sync)
+        const notesEl=document.getElementById('f_notes');
+        const dumpEl=document.getElementById('f_dump');
+        if(currentMode==='dump'&&dumpEl)dumpEl.value=liveText;
+        else if(notesEl)notesEl.value=liveText;
+      };
+      vnRecognition.onerror=()=>{};
+      vnRecognition.start();
+    }
+  }catch(e){toast('Microfoon toegang vereist');}
+}
+
+function stopVoiceRec(){
+  if(vnTimerInterval){clearInterval(vnTimerInterval);vnTimerInterval=null;}
+  if(vnRecognition){try{vnRecognition.stop();}catch{}vnRecognition=null;}
+  if(vnMediaRecorder&&vnMediaRecorder.state==='recording')vnMediaRecorder.stop();
+}
+
+function resetVoiceNote(){
+  if(vnTimerInterval){clearInterval(vnTimerInterval);vnTimerInterval=null;}
+  if(vnMediaRecorder&&vnMediaRecorder.state==='recording')stopVoiceRec();
+  vnMediaRecorder=null;vnAudioChunks=[];vnTranscript='';vnPendingBlob=null;vnSeconds=0;
+  if(vnBlobURL){URL.revokeObjectURL(vnBlobURL);vnBlobURL=null;}
+  const player=document.getElementById('vnPlayer');
+  if(player){player.src='';player.style.display='none';}
+  const btn=document.getElementById('vnRecBtn');
+  if(btn){btn.textContent='🎙️ Voice note';btn.classList.remove('vn-rec-active');}
+  const status=document.getElementById('vnStatus');
+  if(status)status.textContent='Opnemen → automatisch getranscribeerd';
+  const box=document.getElementById('vnTranscriptBox');
+  if(box){box.style.display='none';box.textContent='';}
+}
+
+window.playVoiceNote=async function(key){
+  const url=await getVoiceNote(key);
+  if(!url){toast('Geen voice note gevonden');return;}
+  // Remove any existing inline player
+  const old=document.getElementById('vnInlinePlayer');if(old)old.remove();
+  const wrap=document.createElement('div');
+  wrap.id='vnInlinePlayer';
+  wrap.style.cssText='position:fixed;bottom:130px;left:50%;transform:translateX(-50%);z-index:500;background:#fff;border-radius:16px;padding:12px 14px;box-shadow:0 8px 28px rgba(0,0,0,.22);width:300px;max-width:92vw;display:flex;flex-direction:column;gap:8px';
+  wrap.innerHTML=`<div style="display:flex;justify-content:space-between;align-items:center"><span style="font-size:12px;font-weight:700;color:#E07BAF">🎙️ Voice note</span><button onclick="document.getElementById('vnInlinePlayer').remove();URL.revokeObjectURL('${url}')" style="background:none;border:none;font-size:20px;color:#aaa;cursor:pointer;line-height:1;padding:0 4px">×</button></div><audio src="${url}" controls autoplay style="width:100%;border-radius:8px"></audio>`;
+  document.body.appendChild(wrap);
+};
+
+// ─── INDEXEDDB VIDEO STORAGE ──────────────────────────────────────────────────
+function openIDB(){
+  return new Promise((res,rej)=>{
+    const req=indexedDB.open('inspoVideoStore',1);
+    req.onupgradeneeded=e=>e.target.result.createObjectStore('videos');
+    req.onsuccess=e=>res(e.target.result);
+    req.onerror=()=>rej(req.error);
+  });
+}
+async function storeVideoInIDB(id,file){
+  const db=await openIDB();
+  return new Promise((res,rej)=>{
+    const tx=db.transaction('videos','readwrite');
+    tx.objectStore('videos').put(file,id);
+    tx.oncomplete=()=>res();
+    tx.onerror=()=>rej(tx.error);
+  });
+}
+async function getVideoFromIDB(id){
+  try{
+    const db=await openIDB();
+    return new Promise(res=>{
+      const tx=db.transaction('videos','readonly');
+      const req=tx.objectStore('videos').get(id);
+      req.onsuccess=()=>res(req.result?URL.createObjectURL(req.result):null);
+      req.onerror=()=>res(null);
+    });
+  }catch{return null;}
+}
+async function deleteVideoFromIDB(id){
+  try{
+    const db=await openIDB();
+    const tx=db.transaction('videos','readwrite');
+    tx.objectStore('videos').delete(id);
+  }catch{}
+}
+
+// ─── COBALT VIDEO DOWNLOAD ────────────────────────────────────────────────────
+async function fetchCobaltUrl(url){
+  // Tries multiple Cobalt instances (open-source media downloader with CORS support)
+  // Instagram support varies by day — Meta actively blocks these services
+  const COBALT_INSTANCES=[
+    'https://api.cobalt.tools/',
+    'https://cobalt.api.timelessnesses.me/',
+    'https://cobalt.cerulean.sh/',
+    'https://capi.oak.li/',
+  ];
+  for(const base of COBALT_INSTANCES){
+    try{
+      const res=await fetch(base,{
+        method:'POST',
+        headers:{'Accept':'application/json','Content-Type':'application/json'},
+        body:JSON.stringify({url,videoQuality:'720'})
+      });
+      if(!res.ok)continue;
+      const data=await res.json();
+      if(data.status==='error'||data.status==='rate-limit')continue;
+      // Handle all Cobalt response shapes (v9 and v10)
+      if(data.url)return data.url;
+      if(data.tunnel_url)return data.tunnel_url;
+      if(data.urls)return Array.isArray(data.urls)?data.urls[0]:data.urls;
+      if(data.picker&&data.picker.length>0){
+        const vid=data.picker.find(p=>p.type==='video')||data.picker[0];
+        return vid.url||vid;
+      }
+    }catch(e){continue;}
+  }
+  // Last resort — legacy endpoint format
+  try{
+    const res=await fetch('https://api.cobalt.tools/api/json',{
+      method:'POST',
+      headers:{'Accept':'application/json','Content-Type':'application/json'},
+      body:JSON.stringify({url,vQuality:'720',isAudioOnly:false})
+    });
+    if(res.ok){
+      const data=await res.json();
+      if(data.url)return data.url;
+    }
+  }catch(e){}
+  return null;
+}
+
+// Also try to re-fetch video for existing inspo items that don't have one
+window.uploadVideoForInspo=async function(input){
+  const file=input.files[0];if(!file)return;
+  const id=_currentInspoId;if(!id)return;
+  const item=state.inspo.find(x=>x.id===id);if(!item)return;
+  toast('Saving video…');
+  try{
+    await storeVideoInIDB(id,file);
+    item.videoUrl='idb:'+id;
+    save();
+    // Reload detail modal to show video
+    openInspoDetail(id);
+    toast('▶ Video saved — plays offline too');
+  }catch(e){toast('Could not save video: '+e.message);}
+};
+
+window.retryVideoFetch=async(id)=>{
+  const item=state.inspo.find(x=>x.id===id);if(!item||!item.url)return;
+  toast('Fetching video…');
+  const videoUrl=await fetchCobaltUrl(item.url).catch(()=>null);
+  if(videoUrl){item.videoUrl=videoUrl;save();renderInspo();openInspoDetail(id);toast('▶ Video ready');}
+  else toast('⚠️ Could not fetch — Instagram may have blocked this');
+};
+
+// ─── INSPO HELPERS ────────────────────────────────────────────────────────────
+function detectPlatform(url){
+  if(!url)return'other';
+  if(/youtube\.com\/(watch|shorts)|youtu\.be\//.test(url))return'youtube';
+  if(/tiktok\.com/.test(url))return'tiktok';
+  if(/instagram\.com\/(reel|p|tv|stories)/.test(url))return'instagram';
+  return'other';
+}
+function extractEmbedId(url,platform){
+  if(platform==='youtube'){const m=url.match(/(?:v=|youtu\.be\/|shorts\/)([a-zA-Z0-9_-]{11})/);return m?m[1]:null;}
+  if(platform==='tiktok'){const m=url.match(/video\/(\d+)/);return m?m[1]:null;}
+  if(platform==='instagram'){const m=url.match(/\/(reel|p|tv)\/([A-Za-z0-9_-]+)/);return m?m[2]:null;}
+  return null;
+}
+
+let _currentInspoId=null;
+
+window.openInspoDetail=async id=>{
+  const i=state.inspo.find(x=>x.id===id);if(!i)return;
+  // Resolve IDB video to a blob URL first
+  if(i.videoUrl&&i.videoUrl.startsWith('idb:')){
+    const blobUrl=await getVideoFromIDB(i.id);
+    if(blobUrl)i._blobUrl=blobUrl; // temp, not saved to state
+  }
+  _currentInspoId=id;
+  const platform=i.platform||detectPlatform(i.url||'');
+  const embedId=i.embedId||extractEmbedId(i.url||'',platform);
+  const c=CATS[i.cat]||CATS[firstCatKey()]||Object.values(CATS)[0];
+
+  // Build embed — prefer local/Cobalt video, then platform embeds
+  const playableUrl=i._blobUrl||(i.videoUrl&&!i.videoUrl.startsWith('idb:')?i.videoUrl:null);
+  let embedHTML='';
+  if(playableUrl){
+    embedHTML=`<div class="idmodal-embed portrait" style="background:#000">
+      <video controls playsinline style="width:100%;height:100%;object-fit:contain;display:block" preload="metadata">
+        <source src="${escAttr(playableUrl)}">
+      </video>
+    </div>`;
+  } else if(platform==='youtube'&&embedId){
+    embedHTML=`<div class="idmodal-embed landscape"><iframe src="https://www.youtube.com/embed/${embedId}?rel=0&modestbranding=1" allow="autoplay;encrypted-media;fullscreen" allowfullscreen></iframe></div>`;
+  } else if(platform==='tiktok'&&embedId){
+    embedHTML=`<div class="idmodal-embed portrait"><iframe src="https://www.tiktok.com/embed/v2/${embedId}" allow="fullscreen"></iframe></div>`;
+  } else {
+    const icon={instagram:'📸',tiktok:'🎵',other:'🔗'}[platform]||'🔗';
+    embedHTML=`<div class="idplaceholder">
+      <div class="picon">${icon}</div>
+      <div class="pname">No video yet</div>
+      <button class="id-open-btn" onclick="retryVideoFetch(${i.id})">⬇ Download video</button>
+      <button class="id-open-btn" style="margin-top:6px;background:rgba(255,255,255,.08)" onclick="window.open('${escAttr(i.url||'')}','_blank','noopener')">↗ Open original</button>
+    </div>`;
+  }
+  document.getElementById('idEmbed').innerHTML=embedHTML;
+
+  // Tags
+  document.getElementById('idTags').innerHTML=`
+    <span class="tag cat-${i.cat}">${c.emoji} ${c.label}</span>
+    <span class="tag" style="background:#f3f3f3;color:#666">${{youtube:'▶️ YouTube',tiktok:'🎵 TikTok',instagram:'📸 Instagram',other:'🔗 Link'}[platform]||'🔗'}</span>
+    <span class="tag" style="background:#fff7e6;color:#c47f00">${esc(i.status||'To recreate')}</span>`;
+
+  // Fields
+  document.getElementById('idHook').value=i.hook||'';
+  document.getElementById('idScript').value=i.script||'';
+  document.getElementById('idNotes').value=i.notes||'';
+  document.getElementById('idTranscript').value='';
+
+  // Wire up save-on-blur
+  document.getElementById('idHook').onblur=()=>saveInspoField(id,'hook',document.getElementById('idHook').value);
+  document.getElementById('idScript').onblur=()=>saveInspoField(id,'script',document.getElementById('idScript').value);
+  document.getElementById('idNotes').onblur=()=>saveInspoField(id,'notes',document.getElementById('idNotes').value);
+
+  // Action buttons
+  document.getElementById('idHookSaveBtn').onclick=()=>copyInspoHookToBank(id);
+  document.getElementById('idOpenBtn').onclick=()=>window.open(i.url,'_blank','noopener');
+  document.getElementById('idVaultBtn').onclick=()=>sendInspoToVault(id);
+  document.getElementById('idDelBtn').onclick=()=>{deleteInspo(id);closeModal('modalInspoDetail');};
+
+  document.getElementById('modalInspoDetail').classList.add('open');
+};
+
+window.saveInspoField=(id,field,value)=>{
+  const item=state.inspo.find(x=>x.id===id);
+  if(item){item[field]=value.trim();save();renderInspo();}
+};
+
+window.copyInspoHookToBank=id=>{
+  const item=state.inspo.find(x=>x.id===id);if(!item)return;
+  const hook=document.getElementById('idHook').value.trim()||item.hook||'';
+  if(!hook){toast('Write a hook first');return;}
+  if(!state.userHooks)state.userHooks=[];
+  if(state.userHooks.some(h=>h.text===hook)){toast('Already in your Hooks tab ✓');return;}
+  state.userHooks.push({id:Date.now(),text:hook,type:'Saved',cat:item.cat});
+  item.hook=hook;save();renderHooks();renderInspo();
+  toast('🪝 Hook saved to Hooks tab ✓');
+};
+
+window.processInspoDetailAI=async()=>{
+  const id=_currentInspoId;if(!id)return;
+  const item=state.inspo.find(x=>x.id===id);if(!item)return;
+  const text=document.getElementById('idTranscript').value.trim();
+  if(!text){toast('Paste the transcript or caption first');return;}
+  const btn=document.getElementById('idAiBtn');btn.textContent='Analyzing…';btn.disabled=true;
+
+  const key=getApiKey();
+  if(key){
+    try{
+      const raw=await callClaude(buildBrainDumpPrompt(text));
+      const jsonMatch=raw.match(/\{[\s\S]*\}/);
+      if(!jsonMatch)throw new Error('No JSON');
+      const r=JSON.parse(jsonMatch[0]);
+      item.hook=r.hook||'';
+      item.script=r.script||text;
+      item.notes=r.notes||'';
+      if(!item.title||item.title==='Untitled inspo')item.title=r.title||aiSmartTitle(text,r.category||item.cat);
+      save();
+      document.getElementById('idHook').value=item.hook;
+      document.getElementById('idScript').value=item.script;
+      document.getElementById('idNotes').value=item.notes;
+      document.getElementById('idTranscript').value='';
+      renderInspo();toast('✨ Claude analyzed — hook, script & notes filled in');
+    }catch(e){toast('⚠️ Claude error: '+e.message.substring(0,60));}
+  } else {
+    setTimeout(()=>{
+      const cat=item.cat||aiCategorize(text);
+      const{hook,scriptText,notesText}=aiStructureContent(text,cat);
+      const smartTitle=aiSmartTitle(text,cat);
+      item.hook=hook;item.script=scriptText||text;item.notes=notesText||item.notes||'';
+      if(!item.title||item.title==='Untitled inspo')item.title=smartTitle;
+      save();
+      document.getElementById('idHook').value=item.hook;
+      document.getElementById('idScript').value=item.script;
+      if(item.notes)document.getElementById('idNotes').value=item.notes;
+      document.getElementById('idTranscript').value='';
+      renderInspo();toast('✨ Done (connect Claude API for smarter results)');
+    },800);
+  }
+  btn.textContent='✨ Analyze & Extract';btn.disabled=false;
+};
+
+window.sendInspoToVault=id=>{
+  const item=state.inspo.find(x=>x.id===id);if(!item)return;
+  // Save any unsaved field values first
+  item.hook=document.getElementById('idHook').value.trim()||item.hook||'';
+  item.script=document.getElementById('idScript').value.trim()||item.script||'';
+  item.notes=document.getElementById('idNotes').value.trim()||item.notes||'';
+  state.ideas.push({id:Date.now(),title:item.title||'From Inspo',hook:item.hook,notes:item.notes,script:item.script,cat:item.cat||'life',platform:'Both',format:'camera',goal:'inspire',seriesId:null,status:'💡 Idea',day:null});
+  save();renderAll();toast('Sent to Vault as a new idea 💡');
+};
+
+// ─── FREE WHISPER TRANSCRIPTION ───────────────────────────────────────────────
+// Uses Transformers.js — runs Whisper entirely in your browser, no API key needed.
+// First use downloads the model (~40MB), then it's cached locally forever.
+window.startTranscription=async function(){
+  const id=_currentInspoId;if(!id)return;
+  const item=state.inspo.find(x=>x.id===id);if(!item)return;
+
+  // Need a playable video
+  const blobUrl=item._blobUrl||(item.videoUrl&&!item.videoUrl.startsWith('idb:')?item.videoUrl:null);
+  if(!blobUrl){
+    toast('Upload een video eerst — dan kan ik hem transcriberen 🎙');return;
+  }
+
+  const btn=document.getElementById('idTranscribeBtn');
+  const prog=document.getElementById('transcribeProgress');
+  btn.disabled=true;prog.style.display='block';
+
+  const setMsg=msg=>{prog.textContent=msg;};
+
+  try{
+    setMsg('Video ophalen…');
+    const resp=await fetch(blobUrl);
+    const ab=await resp.arrayBuffer();
+
+    setMsg('Audio decoderen…');
+    const audioCtx=new AudioContext({sampleRate:16000});
+    let audioBuffer;
+    try{audioBuffer=await audioCtx.decodeAudioData(ab);}
+    catch(e){throw new Error('Audio uit deze video kon niet worden gelezen. Probeer een MP4 bestand.');}
+    const audioData=audioBuffer.getChannelData(0);
+    await audioCtx.close();
+
+    // Check module is loaded
+    if(typeof window._whisperTranscribe!=='function'){
+      throw new Error('Whisper module nog niet geladen — wacht even en probeer opnieuw.');
+    }
+
+    setMsg('Whisper model laden (eerste keer ~40MB, daarna gecached)…');
+    const text=await window._whisperTranscribe(audioData,setMsg);
+
+    document.getElementById('idTranscript').value=text;
+    prog.style.display='none';btn.disabled=false;
+    toast('✅ Transcriptie klaar! Klik "Analyze & Extract" om te verwerken.');
+  }catch(e){
+    prog.style.display='none';btn.disabled=false;
+    toast('⚠️ '+e.message.substring(0,80));
+  }
+};
+
+// Live URL preview in add modal
+window.previewInspoURL=url=>{
+  const pv=document.getElementById('i_url_preview');
+  const platform=detectPlatform(url),embedId=extractEmbedId(url,platform);
+  if(platform==='youtube'&&embedId){
+    pv.style.display='block';
+    pv.innerHTML=`<div style="aspect-ratio:16/9;overflow:hidden;border-radius:12px"><iframe width="100%" height="100%" src="https://www.youtube.com/embed/${embedId}?rel=0" allow="autoplay;encrypted-media" allowfullscreen style="border:none"></iframe></div>`;
+  } else if(platform==='tiktok'&&embedId){
+    pv.style.display='block';
+    pv.innerHTML=`<div style="aspect-ratio:9/16;max-height:200px;overflow:hidden;border-radius:12px"><iframe width="100%" height="100%" src="https://www.tiktok.com/embed/v2/${embedId}" allow="fullscreen" style="border:none"></iframe></div>`;
+  } else if(platform==='instagram'){
+    pv.style.display='block';
+    pv.innerHTML=`<div style="padding:10px 12px;background:#fdf0ff;border-radius:10px;font-size:12px;color:#888">📸 Instagram saved — tap the card to view it with the embedded player.</div>`;
+  } else {pv.style.display='none';pv.innerHTML='';}
+};
+
+// ─── UTILS ────────────────────────────────────────────────────────────────────
+function esc(s){return(s||'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function escAttr(s){return(s||'').replace(/['"]/g,c=>c==='"'?'&quot;':'&#39;');}
+let toastTimer;
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>t.classList.remove('show'),3000);}
+
+// ─── INIT ─────────────────────────────────────────────────────────────────────
+injectCatStyles();
+populateCatSelects();
+renderBrandPillars();
+renderAll();
+renderHooks();
+updateKeyStatus();
+syncOnLoad();
+</script>
+
+<!-- Transformers.js — Whisper in de browser, volledig gratis, geen API key -->
+<script type="module">
+import{pipeline}from'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2/dist/transformers.min.js';
+
+let _transcriber=null;
+let _loading=false;
+
+async function loadModel(onMsg){
+  if(_transcriber)return _transcriber;
+  if(_loading){
+    // Wait for it
+    await new Promise(r=>{const t=setInterval(()=>{if(!_loading){clearInterval(t);r();}},300);});
+    return _transcriber;
+  }
+  _loading=true;
+  try{
+    _transcriber=await pipeline('automatic-speech-recognition','Xenova/whisper-tiny',{
+      progress_callback:p=>{
+        if(p.status==='downloading'||p.status==='progress'){
+          const pct=p.total?Math.round((p.loaded/p.total)*100):0;
+          onMsg&&onMsg(`Model laden: ${pct}% (eenmalig ~40MB, daarna gecached)`);
+        }
+        if(p.status==='ready')onMsg&&onMsg('Model klaar!');
+      }
+    });
+  }finally{_loading=false;}
+  return _transcriber;
+}
+
+window._whisperTranscribe=async function(audioFloat32,onMsg){
+  const t=await loadModel(onMsg);
+  onMsg&&onMsg('Transcriberen — even geduld…');
+  const result=await t(audioFloat32,{
+    chunk_length_s:30,
+    stride_length_s:5,
+    return_timestamps:false,
+  });
+  return result.text||'';
+};
+</script>
+</body>
+</html>
