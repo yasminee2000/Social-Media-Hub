@@ -1029,6 +1029,13 @@ function mergeRemote(remote){
     });
     state[key] = localArr;
   });
+  // Merge voice notes (base64 audio)
+  if(remote.voiceNotes){
+    if(!state.voiceNotes) state.voiceNotes={};
+    Object.entries(remote.voiceNotes).forEach(([k,v])=>{
+      if(!state.voiceNotes[k]){state.voiceNotes[k]=v;changed=true;}
+    });
+  }
   return changed;
 }
 
@@ -1067,7 +1074,7 @@ function loadState(){
   for(const k of [KEY,"contentHub_v4","contentHub_v3","contentHub_v2"]){
     try{const s=JSON.parse(localStorage.getItem(k));if(s){fixState(s);if(k!==KEY)localStorage.setItem(KEY,JSON.stringify(s));return s;}}catch{}
   }
-  return {ideas:[...SEED_IDEAS.map(i=>({...i}))],inspo:[],series:[],userHooks:[],stats:{lastPostedAt:null}};
+  return {ideas:[...SEED_IDEAS.map(i=>({...i}))],inspo:[],series:[],userHooks:[],voiceNotes:{},stats:{lastPostedAt:null}};
 }
 function fixState(s){
   if(!s.ideas)  s.ideas  = [...SEED_IDEAS.map(i=>({...i}))];
@@ -1075,6 +1082,7 @@ function fixState(s){
   if(!s.series) s.series = [];
   if(!s.stats)      s.stats     = {lastPostedAt:null};
   if(!s.userHooks)  s.userHooks = [];
+  if(!s.voiceNotes) s.voiceNotes = {};
   s.inspo.forEach(i=>{if(!('videoUrl' in i))i.videoUrl=null;});
   s.ideas.forEach(i=>{
     if(!i.format)              i.format   = 'camera';
@@ -1419,6 +1427,12 @@ window.saveIdea=async()=>{
         const key='vn_'+idea.id;
         await storeVoiceNote(key,vnPendingBlob);
         idea.voiceNoteKey=key;
+        // Also store as base64 in state for cross-device sync
+        blobToBase64(vnPendingBlob).then(b64=>{
+          if(!state.voiceNotes)state.voiceNotes={};
+          state.voiceNotes[key]=b64;
+          save();
+        });
       }
     }
     editingIdeaId=null;save();renderAll();if(viewingSeriesId)renderSeriesDetail(viewingSeriesId);closeModal('modalIdea');toast('Updated ✓');
@@ -1428,6 +1442,10 @@ window.saveIdea=async()=>{
     if(vnPendingBlob){
       voiceNoteKey='vn_'+newId;
       await storeVoiceNote(voiceNoteKey,vnPendingBlob);
+      // Also store as base64 in state for cross-device sync
+      const b64=await blobToBase64(vnPendingBlob);
+      if(!state.voiceNotes)state.voiceNotes={};
+      state.voiceNotes[voiceNoteKey]=b64;
     }
     state.ideas.push({id:newId,title,hook:document.getElementById('f_hook').value.trim(),notes:document.getElementById('f_notes').value.trim(),script:document.getElementById('f_script').value.trim(),cat:document.getElementById('f_cat').value,platform:document.getElementById('f_plat').value,format:currentFormat,goal:currentGoal,seriesId,status:"💡 Idea",day:null,voiceNoteKey});
     save();renderAll();if(viewingSeriesId)renderSeriesDetail(viewingSeriesId);closeModal('modalIdea');toast('Idea captured ✓');
@@ -2110,8 +2128,20 @@ function resetVoiceNote(){
   if(box){box.style.display='none';box.textContent='';}
 }
 
+function blobToBase64(blob){
+  return new Promise(res=>{
+    const r=new FileReader();
+    r.onload=()=>res(r.result);
+    r.readAsDataURL(blob);
+  });
+}
+
 window.playVoiceNote=async function(key){
-  const url=await getVoiceNote(key);
+  // Try IndexedDB first (same device), then fall back to synced base64
+  let url=await getVoiceNote(key);
+  if(!url && state.voiceNotes && state.voiceNotes[key]){
+    url=state.voiceNotes[key]; // base64 data URL works directly in audio src
+  }
   if(!url){toast('Geen voice note gevonden');return;}
   // Remove any existing inline player
   const old=document.getElementById('vnInlinePlayer');if(old)old.remove();
