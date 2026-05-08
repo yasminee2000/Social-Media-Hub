@@ -1015,17 +1015,30 @@ function setSyncStatus(s){
   el.textContent=txt;el.style.color=col;
 }
 
-// Load from GitHub on startup and merge if newer
+// Merge remote into local by ID — additive, never loses data from either device
+function mergeRemote(remote){
+  let changed = false;
+  ['ideas','inspo','series','userHooks'].forEach(key=>{
+    const localArr  = state[key]  || [];
+    const remoteArr = remote[key] || [];
+    remoteArr.forEach(remoteItem=>{
+      if(!localArr.find(l=>l.id===remoteItem.id)){
+        localArr.push(remoteItem);
+        changed = true;
+      }
+    });
+    state[key] = localArr;
+  });
+  return changed;
+}
+
 async function syncOnLoad(){
   if(!getGHToken()){setSyncStatus('error');return;}
   const remote = await ghLoad();
   if(!remote){setSyncStatus('synced');return;}
-  // Use remote if it has more content than local
-  const remoteTotal = (remote.ideas||[]).length + (remote.inspo||[]).length + (remote.userHooks||[]).length;
-  const localTotal  = (state.ideas||[]).length  + (state.inspo||[]).length  + (state.userHooks||[]).length;
-  if(remoteTotal > localTotal){
-    fixState(remote);
-    state = remote;
+  const changed = mergeRemote(remote);
+  if(changed){
+    fixState(state);
     localStorage.setItem(KEY, JSON.stringify(state));
     renderAll();
   }
