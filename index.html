@@ -1034,7 +1034,6 @@ async function syncOnLoad(){
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
 const KEY = "contentHub_v5";
-let state = loadState();
 let filterCat = null, filterStatus = null, filterInspo = null;
 let editingAssignId = null, editingIdeaId = null;
 let currentMode = 'structured', currentFormat = 'camera', currentGoal = 'inspire', genScript = false;
@@ -1048,6 +1047,8 @@ const SEED_IDEAS = [
   {id:4,title:"A day in my life in Dubai (honest version)",   cat:"life",  status:"💡 Idea",hook:"Not the highlight reel. The real one.",                      platform:"Instagram",format:"broll",   goal:"entertain",seriesId:null,notes:"",script:"",day:null},
   {id:5,title:"Why I keep starting over (and why that's okay)",cat:"hustle",status:"💡 Idea",hook:"Real estate. Sales. Travel. Dubai. What's next?",           platform:"Both",    format:"camera",   goal:"inspire",  seriesId:null,notes:"",script:"",day:null},
 ];
+
+let state = loadState();
 
 function loadState(){
   for(const k of [KEY,"contentHub_v4","contentHub_v3","contentHub_v2"]){
