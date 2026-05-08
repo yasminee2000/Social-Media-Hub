@@ -1010,26 +1010,26 @@ function updateGHTokenUI(){
 
 function setSyncStatus(s){
   const el=document.getElementById('syncStatus');if(!el)return;
-  const map={syncing:['⏫ Syncing…','#888'],synced:['☁️ Synced','#16a34a'],error:['⚠️ Sync error','#c44']};
+  const map={syncing:['⏫ Syncing…','rgba(255,255,255,.6)'],synced:['☁️ Synced','rgba(255,255,255,.55)'],error:['⚠️ Token nodig — ga naar Claude tab','#F4A261']};
   const[txt,col]=map[s]||map.error;
   el.textContent=txt;el.style.color=col;
 }
 
 // Load from GitHub on startup and merge if newer
 async function syncOnLoad(){
+  if(!getGHToken()){setSyncStatus('error');return;}
   const remote = await ghLoad();
-  if(!remote) return;
-  // Use remote if it has more ideas or inspo than local (simple merge strategy)
-  const local = state;
-  const remoteTotal = (remote.ideas||[]).length + (remote.inspo||[]).length;
-  const localTotal  = (local.ideas||[]).length  + (local.inspo||[]).length;
-  if(remoteTotal >= localTotal){
+  if(!remote){setSyncStatus('synced');return;}
+  // Use remote if it has more content than local
+  const remoteTotal = (remote.ideas||[]).length + (remote.inspo||[]).length + (remote.userHooks||[]).length;
+  const localTotal  = (state.ideas||[]).length  + (state.inspo||[]).length  + (state.userHooks||[]).length;
+  if(remoteTotal > localTotal){
     fixState(remote);
     state = remote;
     localStorage.setItem(KEY, JSON.stringify(state));
     renderAll();
-    setSyncStatus('synced');
   }
+  setSyncStatus('synced');
 }
 
 // ─── STATE ────────────────────────────────────────────────────────────────────
