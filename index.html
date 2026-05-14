@@ -961,13 +961,18 @@ let ghFileSha = null;
 async function ghLoad(){
   const GH_TOKEN=getGHToken();if(!GH_TOKEN)return null;
   try{
-    const r = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`,{
+    // Get file metadata first (sha + download_url)
+    const meta = await fetch(`https://api.github.com/repos/${GH_OWNER}/${GH_REPO}/contents/${GH_FILE}`,{
       headers:{'Authorization':'token '+GH_TOKEN,'Accept':'application/vnd.github.v3+json'}
     });
-    if(!r.ok) return null;
-    const d = await r.json();
+    if(!meta.ok) return null;
+    const d = await meta.json();
     ghFileSha = d.sha;
-    return JSON.parse(atob(d.content.replace(/\s/g,'')));
+    // For large files GitHub omits content — use raw download URL instead
+    const rawUrl = d.download_url;
+    const r = await fetch(rawUrl, {cache:'no-store'});
+    if(!r.ok) return null;
+    return await r.json();
   }catch{return null;}
 }
 
